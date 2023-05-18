@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api',
     'servicios',
 ]
 
@@ -54,6 +53,16 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'WebAppAlkemy.urls'
 
 TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': ["templates"],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'environment': 'WebAppAlkemy.jinja2.ini_jinja2',
+            'auto_reload': DEBUG,
+            'autoescape': True
+        },
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -105,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'UTC'
 
