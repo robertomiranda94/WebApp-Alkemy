@@ -20,8 +20,8 @@ class Servicio(models.Model):
 	activo = models.BooleanField(default=True)
 
 class Coordinador(models.Model):
-    nombre = models.TextField(max_length=20)
-    apellido = models.TextField(max_length=20)
+    nombre = models.CharField(max_length=20)
+    apellido = models.CharField(max_length=20)
     numero_documento = models.IntegerField(blank=False)
     fecha_alta = models.DateTimeField(auto_now_add=True, blank=True)
     activo = models.BooleanField(default=True)
