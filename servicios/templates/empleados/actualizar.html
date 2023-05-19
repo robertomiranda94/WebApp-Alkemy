@@ -4,10 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <div class="container">
+      <h1>Actualizar empleado</h1>
+      <form method="post" action="{% url 'actualizar_empleado' empleado.id %}">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre:</label>
+          <input type="text" class="form-control" name="nombre" value="{{ empleado.nombre }}">
+        </div>
+        <div class="mb-3">
+          <label for="apellido" class="form-label">Apellido:</label>
+          <input type="text" class="form-control" name="apellido" value="{{ empleado.apellido }}">
+        </div>
+        <div class="mb-3">
+          <label for="numero_legajo" class="form-label">Número de legajo:</label>
+          <input type="text" class="form-control" name="numero_legajo" value="{{ empleado.numero_legajo }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
