@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Coordinador,Empleado
+from .models import Coordinador,Empleado,Servicio
 # Register your models here.
 
 class CoordinadorAdmin(admin.ModelAdmin):
@@ -41,5 +41,27 @@ class EmpleadoAdmin(admin.ModelAdmin):
     ]
     
     
+
+class ServicioAdmin(admin.ModelAdmin):
+    model = Servicio
+
+    list_display = [
+        "id",
+        "nombre",
+        "descripcion",
+        "precio",
+        "activo"
+    ]
+
+
+    search_fields = [
+        "nombre"
+    ]
+
+
+    list_filter = [
+        "activo"
+    ]
 admin.site.register(Coordinador,CoordinadorAdmin)
 admin.site.register(Empleado, EmpleadoAdmin)
+admin.site.register(Servicio,ServicioAdmin)
