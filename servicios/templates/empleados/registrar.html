@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Listado de empleados</title>
+    <title>Registrar empleados</title>
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
-  </body>
+
+    <form method="post">
+        {% csrf_token %}
+
+        Nombre: <input type="text" name="nombre">
+        <br><br>
+        Apellido: <input type="text" name="apellido">
+        <br><br>
+        N° Legajo <input type="number" name="legajo">
+        <br><br>
+
+        <input type="submit" value="Guardar registro">
+
+    </form>
+
+    <br><br>
+
+    <a href="">
+        Ir al Listado
+    </a>
+
+</body>
 </html>
 
