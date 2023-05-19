@@ -22,7 +22,6 @@ def registrar_empleado(request):
                 numero_legajo = numero_legajo,
                 activo = True
             )
-            print('Succes')
         except:
             return HttpResponse("Ocurrió un error al crear el usuario")
     return render(
