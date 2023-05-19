@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Coordinador,Empleado,Servicio
+from .models import Coordinador,Empleado,Servicio, Cliente
 # Register your models here.
 
 class CoordinadorAdmin(admin.ModelAdmin):
@@ -62,6 +62,15 @@ class ServicioAdmin(admin.ModelAdmin):
     list_filter = [
         "activo"
     ]
+
+class ClienteAdmin(admin.ModelAdmin):
+    model = Cliente
+    list_display = ['nombre', 'apellido', 'activo']
+    search_fields = ['nombre', 'apellido']
+    list_filter = ['activo']
+
+
 admin.site.register(Coordinador,CoordinadorAdmin)
 admin.site.register(Empleado, EmpleadoAdmin)
 admin.site.register(Servicio,ServicioAdmin)
+admin.site.register(Cliente)
