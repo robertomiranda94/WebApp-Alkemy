@@ -28,7 +28,7 @@ class CoordinadorAdmin(admin.ModelAdmin):
 admin.site.register(Coordinador,CoordinadorAdmin)
 
 
-class Servicio(admin.ModelAdmin):
+class ServicioAdmin(admin.ModelAdmin):
     model = Servicio
 
     list_display = [
