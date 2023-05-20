@@ -28,3 +28,14 @@ def registrar_empleado(request):
         request,
         "empleados/registrar.html"
     )
+
+def listar_empleados(request):
+    empleados = Empleado.objects.all()
+    context = {
+        'empleados': empleados
+    }
+    return render(
+        request,
+        "empleados/listado.html",
+        context
+    )
