@@ -56,8 +56,7 @@ def activar_registro_empleado(request, id):
 
 def actualizar_registro_empleado(request, id_empleado):
     try:
-        #empleado = Empleado.objects.get(id=id_empleado)
-        empleado = get_object_or_404(Empleado, id=id_empleado)
+        empleado = Empleado.objects.get(id=id_empleado)
 
         context = {
             "empleado": empleado
@@ -75,7 +74,7 @@ def actualizar_registro_empleado(request, id_empleado):
 
             empleado.save()
     except:
-        return redirect("empleados") # O cambiar por otro url
+        return HttpResponse("No se ha podido actualizar el registro del empleado") 
     
     return render(
         request,
