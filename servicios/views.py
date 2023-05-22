@@ -54,6 +54,33 @@ def activar_registro_empleado(request, id):
 
 
 
+def actualizar_registro_empleado(request, id_empleado):
+    try:
+        #empleado = Empleado.objects.get(id=id_empleado)
+        empleado = get_object_or_404(Empleado, id=id_empleado)
+
+        context = {
+            "empleado": empleado
+        }
+
+        if request.POST:
+            nombre_empleado = request.POST["nombre"]
+            apellido_empleado = request.POST["apellido"]
+            legajo_empleado = request.POST["numero_legajo"]
+
+
+            empleado.nombre = nombre_empleado
+            empleado.apellido = apellido_empleado
+            empleado.numero_legajo = legajo_empleado
+
+            empleado.save()
+    except:
+        return redirect("empleados") # O cambiar por otro url
     
+    return render(
+        request,
+        "empleados/actualizar.html",
+        context
+    )
     
     
