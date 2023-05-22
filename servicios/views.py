@@ -1,4 +1,5 @@
 from django.shortcuts import render,HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 from .models import Empleado
 
 # Create your views here.
@@ -39,3 +40,20 @@ def listar_empleados(request):
         "empleados/listado.html",
         context
     )
+def activar_registro_empleado(request, id):
+    try:
+        empleado = Empleado.objects.get(id=id)
+        if not (empleado.activo):
+            empleado.activo = True
+            empleado.save()
+            return HttpResponse("El registro del empleado ingresado ha sido activado")
+        else:
+            return HttpResponse("No es necesario activar el registro de empleado")             
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto")
+
+
+
+    
+    
+    
