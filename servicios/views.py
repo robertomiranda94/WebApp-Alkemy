@@ -41,8 +41,8 @@ def activar_registro_empleado(request, id):
             return HttpResponse("No es necesario activar el registro de empleado")             
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
-    
-    
+
+
 
     
     

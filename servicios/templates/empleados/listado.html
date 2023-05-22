@@ -3,11 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Listado de Empleados</title>
   </head>
   <body>
     <header></header>
-    <main></main>
+    <main>
+      <br><br>
+      <table border="1" width="700">
+          <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>N° Legajo</th>
+              <th>Acciones</th>
+          </tr>
+          {% for empleado in empleados %}
+              <tr>
+                  <td>{{ empleado.id }}</td>
+                  <td>{{ empleado.nombre }}</td>
+                  <td>{{ empleado.apellido }}</td>
+                  <td>{{ empleado.numero_legajo }}</td>
+                  <td>
+                      <a href="#">
+                          Modificar
+                      </a>
+
+                      |
+
+                      <a href="#">
+                          Eliminar
+                      </a>
+
+                      |
+
+                      <a href="#">
+                          Desactivar
+                      </a>
+                  </td>
+              </tr>
+          {% endfor %}
+      </table>
+    </main>
     <footer></footer>
   </body>
 </html>
