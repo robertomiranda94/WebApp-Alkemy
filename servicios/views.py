@@ -54,7 +54,7 @@ def activar_registro_empleado(request, id):
 
 
 
-def actualizar_registro_empleado(request, id_empleado):
+def actualizar_empleado(request, id_empleado):
     try:
         empleado = Empleado.objects.get(id=id_empleado)
 
