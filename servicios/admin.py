@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Coordinador,Empleado,Servicio, Cliente
+from .models import Coordinador,Empleado,Servicio, Cliente, ReservaServicio
 # Register your models here.
 
 class CoordinadorAdmin(admin.ModelAdmin):
@@ -24,6 +24,7 @@ class CoordinadorAdmin(admin.ModelAdmin):
     ]
 
 class EmpleadoAdmin(admin.ModelAdmin):
+    model = Empleado
     list_display = [
         "nombre",
         "apellido",
@@ -69,8 +70,32 @@ class ClienteAdmin(admin.ModelAdmin):
     search_fields = ['nombre', 'apellido']
     list_filter = ['activo']
 
+class ReservaServicioAdmin(admin.ModelAdmin):
+    model = ReservaServicio
+    
+    list_display = [
+        "id",
+        "fecha_creacion",
+        "fecha_reserva",
+        "cliente",
+        "responsable",
+        "empleado",
+        "servicio",
+        "precio",
+
+    ]
+
+
+    search_fields = [
+        "responsable",
+        "cliente",
+        "empleado",
+        "servicio",
+    ]
+    
 
 admin.site.register(Coordinador,CoordinadorAdmin)
 admin.site.register(Empleado, EmpleadoAdmin)
 admin.site.register(Servicio,ServicioAdmin)
 admin.site.register(Cliente)
+admin.site.register(ReservaServicio, ReservaServicioAdmin)
