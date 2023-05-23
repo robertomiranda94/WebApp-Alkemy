@@ -1,5 +1,6 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponse
 from .models import Empleado
 
 # Create your views here.
@@ -81,5 +82,9 @@ def actualizar_empleado(request, id_empleado):
         "empleados/actualizar.html",
         context
     )
-    
-    
+
+def desactivar_empleado(request, id):
+    empleado = get_object_or_404(Empleado, id=id)
+    empleado.activo = False
+    empleado.save()
+    return HttpResponse("El registro del empleado ingresado fué sido desactivado")
