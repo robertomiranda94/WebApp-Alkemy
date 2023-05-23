@@ -87,6 +87,6 @@ def desactivar_empleado(request, id):
     empleado = get_object_or_404(Empleado, id=id)
     empleado.activo = False
     empleado.save()
-    return HttpResponse("El registro del empleado ingresado ha sido desactivado")
+    return HttpResponse("El registro del empleado ingresado fué sido desactivado")
     
     
