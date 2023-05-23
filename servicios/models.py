@@ -25,3 +25,12 @@ class Coordinador(models.Model):
     numero_documento = models.IntegerField(blank=False)
     fecha_alta = models.DateTimeField(auto_now_add=True, blank=True)
     activo = models.BooleanField(default=True)
+    
+class ReservaServicio(models.Model):
+    fecha_creacion = models.DateField(auto_now_add=True)
+    fecha_reserva = models.DateField(null=False)
+    cliente = models.ForeignKey(Cliente,on_delete=models.CASCADE)
+    responsable = models.ForeignKey(Coordinador,on_delete=models.CASCADE)
+    empleado = models.ForeignKey(Empleado,on_delete=models.CASCADE)
+    servicio = models.ForeignKey(Servicio,on_delete=models.CASCADE)
+    precio = models.IntegerField(default=0)
