@@ -1,7 +1,7 @@
-from django.shortcuts import render,HttpResponse, get_object_or_404
+from django.shortcuts import render,HttpResponse, get_object_or_404,redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from .models import Empleado,Coordinador
+from .models import Empleado,Coordinador,Cliente
 
 # Create your views here.
 
@@ -124,6 +124,23 @@ def actualizar_coordinador(request,id_coordinador):
         request,
         "coordinadores/actualizar.html",
         context
+    )
+
+def registrar_cliente(request):
+    if request.POST:
+        try:
+            nombre_cliente = request.POST['nombre']
+            apellido_cliente = request.POST['apellido']
+            Cliente.objects.create(
+                nombre = nombre_cliente,
+                apellido = apellido_cliente,
+                activo = True
+            )
+        except:
+            return HttpResponse("Ocurrió un error al crear el usuario")
+    return render(
+        request,
+        "clientes/registrar.html"
     )
 
 def desactivar_cliente(request, id_cliente):
