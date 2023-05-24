@@ -3,11 +3,56 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Nuevo Cliente</title>
   </head>
   <body>
-    <header></header>
-    <main></main>
+    <main class="container p-4">
+      <h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Nuevo Cliente</h3>
+    
+      <div class="d-flex justify-content-center p-5 bg-warning bg-opacity-75 rounded-5">
+
+          <form method="post"><!-- El metodo post envia informacion a travez de un formulario -->
+              {% csrf_token %} <!-- Token que genera Django -->
+
+              <div class="form-group">
+                <label for="nombre" class="fw-semibold">Nombre:</label>
+                <input type="text" name="nombre" maxlength="20" class="mb-3 form-control">
+
+                <label for="apellido" class="fw-semibold">Apellido:</label>
+                <input type="text" name="apellido" class="mb-3 form-control">
+
+                <div class="p-3">
+                  <label for="estado" class="fw-semibold pe-3">Estado:</label>
+                  <input type="checkbox" class="form-check-input" name="estado" checked class="mb-3 form-control">
+                  <label id="estado_label" style="font-size: .7em;">Activo</label>
+                </div>
+
+                <div class="d-flex justify-content-center pt-5">
+                  <input type="submit" class="btn btn-primary bg-gradient fw-bold" value="Agregar cliente">
+                </div>
+              </div>
+
+            </form>
+      </div>
+
+      <div class="d-flex justify-content-center pt-5">
+        <a class="btn btn-success bg-gradient fw-bold" href="{% url 'listar_clientes' %}">Lista de clientes</a>
+      </div>
+    </main>
     <footer></footer>
+    <script type="text/javascript">
+      const checkbox = document.querySelector('input[name="estado"]');
+      const label = document.querySelector('#estado_label'); //id del label
+
+      checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+          label.textContent = 'Activo';
+          checkbox.value = 'True'
+        } else {
+          label.textContent = 'Desactivado';
+          checkbox.value = 'False'
+        }
+      });
+    </script>
   </body>
 </html>
