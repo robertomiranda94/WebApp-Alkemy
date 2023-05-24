@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-from .views import nuevo_coordinador
 
 urlpatterns = [
     # Ruta de la página de inicio
@@ -16,4 +15,5 @@ urlpatterns = [
     path('clientes/activar/<int:id_cliente>', views.activar_cliente, name='activar_cliente'),
     path('clientes/desactivar/<int:id_cliente>', views.desactivar_cliente, name='desactivar_cliente'),
     path('coordinadores/nuevo', views.nuevo_coordinador, name='nuevo_coordinador'),
+    path('coordinadores/activar/<int:id_coordinador>', views.activar_coordinador, name='activar_coordinador'),
 ]
