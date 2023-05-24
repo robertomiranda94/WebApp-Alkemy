@@ -9,4 +9,5 @@ urlpatterns = [
     path('empleados/activar/<int:id>', views.activar_registro_empleado, name="activar_registro_empleado"),
     path('empleados/actualizar/<int:id_empleado>', views.actualizar_empleado, name='actualizar_empleado'),
     path('empleados/desactivar/<int:id>', views.desactivar_empleado, name='desactivar_empleado'),
+    path('coordinadores/actualizar/<int:id_coordinador>', views.actualizar_coordinador, name='actualizar_coordinador'),
 ]

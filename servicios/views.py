@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from .models import Empleado
+from .models import Empleado,Coordinador
 
 # Create your views here.
 
@@ -41,6 +41,7 @@ def listar_empleados(request):
         "empleados/listado.html",
         context
     )
+
 def activar_registro_empleado(request, id):
     try:
         empleado = Empleado.objects.get(id=id)
@@ -52,8 +53,6 @@ def activar_registro_empleado(request, id):
             return HttpResponse("No es necesario activar el registro de empleado")             
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
-
-
 
 def actualizar_empleado(request, id_empleado):
     try:
@@ -88,3 +87,30 @@ def desactivar_empleado(request, id):
     empleado.activo = False
     empleado.save()
     return HttpResponse("El registro del empleado ingresado fué sido desactivado")
+
+def actualizar_coordinador(request,id_coordinador):
+    try:
+        coordinador = Coordinador.objects.get(id=id_coordinador)
+        context = {
+            "coordinador": coordinador
+        }
+        if request.POST:
+            nombre_coordinador = request.POST["nombre"]
+            apellido_coordinador = request.POST["apellido"]
+            numero_documento_coordinador = request.POST["numero_documento"]
+            fecha_alta_coordinador = request.POST["fecha_alta"]
+            activo_coordinador = request.POST["activo"]
+            
+            coordinador.nombre = nombre_coordinador
+            coordinador.apellido = apellido_coordinador
+            coordinador.numero_documento = numero_documento_coordinador
+            coordinador.activo = activo_coordinador
+            coordinador.save()
+    except:
+        return HttpResponse("No se ha podido actualizar el registro del empleado") 
+    
+    return render(
+        request,
+        "coordinadores/actualizar.html",
+        context
+    )
