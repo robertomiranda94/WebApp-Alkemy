@@ -196,3 +196,27 @@ def activar_coordinador(request, id_coordinador):
             return HttpResponse("Registro de coordinador ya activado")
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
+
+def actualizar_cliente (request, id_cliente):
+    try:
+        cliente = Cliente.objects.get(id=id_cliente)
+        context = {
+            "cliente": cliente
+        }
+        if request.POST:
+            nombre_cliente = request.POST["nombre"]
+            apellido_cliente = request.POST["apellido"]
+            activo_cliente = request.POST["activo"]
+            
+            cliente.nombre = nombre_cliente
+            cliente.apellido = apellido_cliente
+            cliente.activo = activo_cliente
+            cliente.save()
+    except:
+        return HttpResponse("No se ha podido actualizar el registro del cliente") 
+    
+    return render(
+        request,
+        "clientes/actualizar.html",
+        context
+    )

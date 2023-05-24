@@ -16,4 +16,5 @@ urlpatterns = [
     path('clientes/desactivar/<int:id_cliente>', views.desactivar_cliente, name='desactivar_cliente'),
     path('coordinadores/nuevo', views.nuevo_coordinador, name='nuevo_coordinador'),
     path('coordinadores/activar/<int:id_coordinador>', views.activar_coordinador, name='activar_coordinador'),
+    path('clientes/actualizar/<int:id_cliente>', views.actualizar_cliente, name='actualizar_cliente'),
 ]
