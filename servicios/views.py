@@ -88,6 +88,17 @@ def desactivar_empleado(request, id):
     empleado.save()
     return HttpResponse("El registro del empleado ingresado fué sido desactivado")
 
+def listar_coordinadores(request):
+    coordinadores = Coordinador.objects.all()
+    context = {
+        'coordinadores': coordinadores
+    }
+    return render(
+        request,
+        "coordinadores/listado.html",
+        context
+    )
+
 def actualizar_coordinador(request,id_coordinador):
     try:
         coordinador = Coordinador.objects.get(id=id_coordinador)
