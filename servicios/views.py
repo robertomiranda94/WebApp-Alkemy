@@ -184,3 +184,15 @@ def nuevo_coordinador(request):
         request,
         "coordinadores/nuevo.html"
     )
+
+def activar_coordinador(request, id_coordinador):
+    try:
+        coordinador = Coordinador.objects.get(id=id_coordinador)
+        if not (coordinador.activo):
+            coordinador.activo = True
+            coordinador.save()
+            return HttpResponse("El registro del coordinador ingresado fué activado")
+        else:
+            return HttpResponse("Registro de coordinador ya activado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto")
