@@ -6,8 +6,54 @@
     <title></title>
   </head>
   <body>
-    <header></header>
-    <main></main>
+    <main class="container p-4">
+      <h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Lista de coordinadores</h3>
+    
+    <div class="p-5">        
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">Fecha de alta</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Actualizar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for coordinador in coordinadores %}
+                    <tr>
+                        <th scope="col">{{coordinador.id}}</th>
+                        <td>{{coordinador.nombre}}</td>
+                        <td>{{coordinador.apellido}}</td>
+                        <td>{{coordinador.numero_documento}}</td>
+                        <td>{{coordinador.fecha_alta}}</td>
+                        <td>
+                            {% if coordinador.activo %}
+                                <a href="{% url 'desactivar_coordinador' coordinador.id %}" class="btn btn-danger bg-gradient fw-bold">Desctivar</a>
+                            {% else %}
+                                <a href="{% url 'activar_coordinador' coordinador.id %}" class="btn btn-primary bg-gradient fw-bold">Activar</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if coordinador.activo %}
+                                <a href="{% url 'actualizar_coordinador' coordinador.id %}" class="btn btn-warning bg-gradient fw-bold text-white">Actualizar</a>
+                            {% else %}
+                                -------------
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-center p-5">
+            <a href="{% url 'nuevo_coordinador' %}" class="btn btn-success bg-gradient fw-bold">Agregar coordinador</a>
+        </div>
+    </main>
     <footer></footer>
   </body>
 </html>
