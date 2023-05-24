@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse, get_object_or_404,redirect
+from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from .models import Empleado,Coordinador,Cliente
@@ -152,3 +152,25 @@ def desactivar_cliente(request, id_cliente):
         return HttpResponse(f"No se ha podido desactivar el cliente {cliente.nombre} {cliente.apellido}")
     
     return redirect("listar_clientes")
+
+
+def nuevo_coordinador(request):
+    if request.method == 'POST':
+        nombre_coordinador = request.POST["nombre"]
+        apellido_coordinador = request.POST["apellido"]
+        numero_documento_coordinador = request.POST["numero_documento"]
+        fecha_alta_coordinador = request.POST["fecha_alta"]
+        activo_coordinador = request.POST["activo"]
+
+        Coordinador.objects.create(
+            nombre = nombre_coordinador,
+            apellido = apellido_coordinador,
+            numero_documento = numero_documento_coordinador,
+            fecha_alta = fecha_alta_coordinador,
+            activo = activo_coordinador
+        )
+        return HttpResponse("El coordinador ha sido creado con éxito")
+    return render(
+        request,
+        "coordinadores/nuevo.html"
+    )
