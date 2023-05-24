@@ -143,6 +143,16 @@ def registrar_cliente(request):
         "clientes/registrar.html"
     )
 
+def activar_cliente(request,id_cliente):
+    try:
+        cliente = Cliente.objects.get(id=id_cliente)
+        cliente.activo = True
+        cliente.save()
+    except:
+        return HttpResponse(f"No se ha podido activar el cliente {cliente.nombre} {cliente.apellido}")
+    
+    return redirect("listar_clientes")
+
 def desactivar_cliente(request, id_cliente):
     try:
         cliente = Cliente.objects.get(id=id_cliente)
