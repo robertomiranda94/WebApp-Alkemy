@@ -128,7 +128,6 @@ def actualizar_coordinador(request,id_coordinador):
 
 def desactivar_cliente(request, id_cliente):
     try:
-        try:
         cliente = Cliente.objects.get(id=id_cliente)
         cliente.activo = False
         cliente.save()
