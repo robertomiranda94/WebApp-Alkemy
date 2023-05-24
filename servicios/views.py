@@ -125,3 +125,14 @@ def actualizar_coordinador(request,id_coordinador):
         "coordinadores/actualizar.html",
         context
     )
+
+def desactivar_cliente(request, id_cliente):
+    try:
+        try:
+        cliente = Cliente.objects.get(id=id_cliente)
+        cliente.activo = False
+        cliente.save()
+    except:
+        return HttpResponse(f"No se ha podido desactivar el cliente {cliente.nombre} {cliente.apellido}")
+    
+    return redirect("listar_clientes")
