@@ -170,14 +170,12 @@ def nuevo_coordinador(request):
         apellido_coordinador = request.POST["apellido"]
         numero_documento_coordinador = request.POST["numero_documento"]
         fecha_alta_coordinador = request.POST["fecha_alta"]
-        activo_coordinador = request.POST["activo"]
 
         Coordinador.objects.create(
             nombre = nombre_coordinador,
             apellido = apellido_coordinador,
             numero_documento = numero_documento_coordinador,
-            fecha_alta = fecha_alta_coordinador,
-            activo = activo_coordinador
+            fecha_alta = fecha_alta_coordinador
         )
         return HttpResponse("El coordinador ha sido creado con éxito")
     return render(
