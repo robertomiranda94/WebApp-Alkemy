@@ -218,3 +218,14 @@ def actualizar_cliente (request, id_cliente):
         "clientes/actualizar.html",
         context
     )
+
+def listar_clientes(request):
+    clientes = Cliente.objects.all()
+    context = {
+        'clientes': clientes
+    }
+    return render(
+        request,
+        "clientes/listado.html",
+        context
+    )
