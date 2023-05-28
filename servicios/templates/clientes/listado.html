@@ -13,18 +13,35 @@
           <tr>
               <th>ID</th>
               <th>Nombre</th>
-              <th>Apellido</th>              
+              <th>Apellido</th>  
+              <th>Acciones</th>            
           </tr>
-          {% for cliente in Clientes %}
+          {% for cliente in clientes %}
               <tr>
                   <td>{{ cliente.id }}</td>
                   <td>{{ cliente.nombre }}</td>
                   <td>{{ cliente.apellido }}</td>
-                  
+                  <td>
+                    <a href="{% url 'actualizar_cliente' cliente.id%}">
+                      Modificar
+                    </a>
+                    <a href="#"> <!-- La url para eliminar clientes no existe -->
+                      Eliminar
+                    </a>
+                    {% if cliente.activo %}
+                      <a href="{% url 'desactivar_cliente' cliente.id%}">
+                        Desactivar
+                      </a>
+                    {% else %}  
+                      <a href="{% url 'activar_cliente' cliente.id%}">
+                        Activar
+                      </a>
+                    {% endif %}
+                  </td>
               </tr>
           {% endfor %}
       </table>
-    </main>
+    </main>    
     <footer></footer>
   </body>
 </html>
