@@ -3,11 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title>Listado de Clientes</title>
   </head>
   <body>
     <header></header>
-    <main></main>
+    <main>
+      <br><br>
+      <table border="1" width="700">
+          <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>              
+          </tr>
+          {% for cliente in Clientes %}
+              <tr>
+                  <td>{{ cliente.id }}</td>
+                  <td>{{ cliente.nombre }}</td>
+                  <td>{{ cliente.apellido }}</td>
+                  
+              </tr>
+          {% endfor %}
+      </table>
+    </main>
     <footer></footer>
   </body>
 </html>
