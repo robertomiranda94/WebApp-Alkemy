@@ -164,23 +164,25 @@ def desactivar_cliente(request, id_cliente):
     return redirect("listar_clientes")
 
 
-def nuevo_coordinador(request):
+def registrar_coordinador(request):
     if request.method == 'POST':
-        nombre_coordinador = request.POST["nombre"]
-        apellido_coordinador = request.POST["apellido"]
-        numero_documento_coordinador = request.POST["numero_documento"]
-        fecha_alta_coordinador = request.POST["fecha_alta"]
+        try:
+            nombre_coordinador = request.POST["nombre"]
+            apellido_coordinador = request.POST["apellido"]
+            numero_documento_coordinador = request.POST["numero_documento"]
+            fecha_alta_coordinador = request.POST["fecha_alta"]
 
-        Coordinador.objects.create(
-            nombre = nombre_coordinador,
-            apellido = apellido_coordinador,
-            numero_documento = numero_documento_coordinador,
-            fecha_alta = fecha_alta_coordinador
-        )
-        return HttpResponse("El coordinador ha sido creado con éxito")
+            Coordinador.objects.create(
+                nombre = nombre_coordinador,
+                apellido = apellido_coordinador,
+                numero_documento = numero_documento_coordinador,
+                fecha_alta = fecha_alta_coordinador
+            )
+        except:
+            return HttpResponse("Ocurrio un error al crear el coordinador")
     return render(
         request,
-        "coordinadores/nuevo.html"
+        "coordinadores/registrar.html"
     )
 
 def activar_coordinador(request, id_coordinador):
