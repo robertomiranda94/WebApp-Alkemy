@@ -197,6 +197,18 @@ def activar_coordinador(request, id_coordinador):
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
 
+def desactivar_coordinador(request, id_coordinador):
+    try:
+        coordinador = Coordinador.objects.get(id=id_coordinador)
+        if (coordinador.activo):
+            coordinador.activo = False
+            coordinador.save()
+            return HttpResponse("El registro del coordinador ingresado fué desactivado")
+        else:
+            return HttpResponse("Registro de coordinador ya desactivado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto")
+
 def actualizar_cliente (request, id_cliente):
     try:
         cliente = Cliente.objects.get(id=id_cliente)
