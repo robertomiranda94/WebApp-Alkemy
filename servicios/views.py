@@ -218,11 +218,9 @@ def actualizar_cliente (request, id_cliente):
         if request.POST:
             nombre_cliente = request.POST["nombre"]
             apellido_cliente = request.POST["apellido"]
-            activo_cliente = request.POST["activo"]
             
             cliente.nombre = nombre_cliente
             cliente.apellido = apellido_cliente
-            cliente.activo = activo_cliente
             cliente.save()
     except:
         return HttpResponse("No se ha podido actualizar el registro del cliente") 

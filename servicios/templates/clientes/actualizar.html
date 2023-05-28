@@ -3,14 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
+    <title> Actualizar cliente </title>
   </head>
   <body>
-    <header></header>
-    <main></main>
-    <a href="{% url 'listar_clientes' %}">
-      Ir al Listado de Clientes
-    </a>
-    <footer></footer>
+    <div class="container">
+      <h1 class="text-center fw-bold mb-3">Actualizar empleado</h1>
+      <div class="d-flex justify-content-center">
+
+        <form method="post" action="{% url 'actualizar_cliente' cliente.id %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control border border-dark border border-1" name="nombre" value="{{ cliente.nombre }}">
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="form-label">Apellido:</label>
+            <input type="text" class="form-control border border-dark border border-1" name="apellido" value="{{ cliente.apellido }}">
+          </div>          
+          <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center pt-5">
+      <a class="btn btn-success bg-gradient fw-bold" href="{% url 'listar_clientes' %}">Lista de clientes</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
+
   </body>
 </html>
