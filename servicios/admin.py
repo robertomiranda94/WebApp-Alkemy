@@ -87,10 +87,10 @@ class ReservaServicioAdmin(admin.ModelAdmin):
 
 
     search_fields = [
-        "responsable",
-        "cliente",
-        "empleado",
-        "servicio",
+        "responsable__nombre",
+        "cliente__nombre",
+        "empleado__nombre",
+        "servicio__nombre",
     ]
     
 
