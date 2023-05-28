@@ -1,38 +1,32 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nuevo Cliente</title>
-  </head>
-  <body>
-    <main class="container p-4">
-      <h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Nuevo Cliente</h3>
-    
-      <div class="d-flex justify-content-center p-5 bg-warning bg-opacity-75 rounded-5">
+{% extends "index.html" %}
 
-          <form method="post"><!-- El metodo post envia informacion a travez de un formulario -->
-              {% csrf_token %} <!-- Token que genera Django -->
 
-              <div class="form-group">
-                <label for="nombre" class="fw-semibold">Nombre:</label>
-                <input type="text" name="nombre" maxlength="20" class="mb-3 form-control">
+{% block titulo %} Nuevo Cliente {% endblock %}
 
-                <label for="apellido" class="fw-semibold">Apellido:</label>
-                <input type="text" name="apellido" class="mb-3 form-control">
+{% block contenido_principal %}
+  <h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Nuevo Cliente</h3>
+      
+        <div class="d-flex justify-content-center p-5 bg-warning bg-opacity-75 rounded-5">
 
-                <div class="d-flex justify-content-center pt-5">
-                  <input type="submit" class="btn btn-primary bg-gradient fw-bold" value="Agregar cliente">
+            <form method="post"><!-- El metodo post envia informacion a travez de un formulario -->
+                {% csrf_token %} <!-- Token que genera Django -->
+
+                <div class="form-group">
+                  <label for="nombre" class="fw-semibold">Nombre:</label>
+                  <input type="text" name="nombre" maxlength="20" class="mb-3 form-control">
+
+                  <label for="apellido" class="fw-semibold">Apellido:</label>
+                  <input type="text" name="apellido" class="mb-3 form-control">
+
+                  <div class="d-flex justify-content-center pt-5">
+                    <input type="submit" class="btn btn-primary bg-gradient fw-bold" value="Agregar cliente">
+                  </div>
                 </div>
-              </div>
 
-            </form>
-      </div>
+              </form>
+        </div>
 
-      <div class="d-flex justify-content-center pt-5">
-        <a class="btn btn-success bg-gradient fw-bold" href="{% url 'listar_clientes' %}">Lista de clientes</a>
-      </div>
-    </main>    
-    <footer></footer>
-  </body>
-</html>
+        <div class="d-flex justify-content-center pt-5">
+          <a class="btn btn-success bg-gradient fw-bold" href="{% url 'listar_clientes' %}">Lista de clientes</a>
+        </div>
+{% endblock %}
