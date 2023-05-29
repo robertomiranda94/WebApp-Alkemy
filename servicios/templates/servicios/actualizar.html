@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block titulo %} Actualizar Servicio {% endblock %}
+
+
+
+{% block contenido_principal %}
+<div>
+
+    <form method="post" action="{% url 'actualizar_servicio' servicio.id %}">
+        {% csrf_token %}
+
+        <div>
+          <label>Nombre:</label>
+          <input type="text" name="nombre" value="{{servicio.nombre}}">
+
+          <div>
+            <label>Descripci&oacute;n:</label>
+            <textarea rows="6" cols="70" name="descripcion">{{servicio.descripcion}}</textarea>
+          </div>
+          
+          <label>Precio:</label>
+          <input type="number" step="any" name="precio" value="{{servicio.precio}}">
+
+          <div>
+            <input type="submit" value="Actualizar">
+          </div>
+        </div>
+
+    </form>
+          
+</div>
+{% endblock %}
