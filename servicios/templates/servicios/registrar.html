@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+
+{% block titulo %} Nuevo Servicio {% endblock %}
+
+
+
+{% block contenido_principal %}
+<h1>Nuevo Servicio</h1>
+    
+    <div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div>
+              <label>Nombre:</label>
+              <input type="text" name="nombre" maxlength="20">
+
+              <div>
+                <label>Descripci&oacute;n:</label>
+                <textarea rows="6" cols="70" name="descripcion"></textarea>
+              </div>
+              
+              <label>Precio:</label>
+              <input type="number" step="any" name="precio">
+
+              <div>
+                <input type="submit"value="Guardar Registro">
+              </div>
+            </div>
+
+        </form>
+          
+    </div>
+
+    <div>
+      <a href="#">Lista de servicios</a>
+    </div>
+{% endblock %}
