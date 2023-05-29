@@ -13,6 +13,7 @@ urlpatterns = [
     path('coordinadores/nuevo', views.registrar_coordinador,name='registrar_coordinador'),
     path('coordinadores/listado/', views.listar_coordinadores, name='listar_coordinadores'),
     path('coordinadores/actualizar/<int:id_coordinador>', views.actualizar_coordinador, name='actualizar_coordinador'),
+    path('coordinadores/eliminar/<int:id_coordinador>', views.eliminar_coordinador, name='eliminar_coordinador'),
     path('clientes/nuevo/', views.registrar_cliente, name='registrar_cliente'),
     path('clientes/activar/<int:id_cliente>', views.activar_cliente, name='activar_cliente'),
     path('clientes/desactivar/<int:id_cliente>', views.desactivar_cliente, name='desactivar_cliente'),

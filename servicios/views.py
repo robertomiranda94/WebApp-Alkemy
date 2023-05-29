@@ -256,3 +256,11 @@ def listar_clientes(request):
         "clientes/listado.html",
         context
     )
+
+def eliminar_coordinador(request,id_coordinador):
+    try:
+        coordinador = Coordinador.objects.get(id=id_coordinador)
+        coordinador.delete()
+    except:
+        return HttpResponse("No se ha encontrado el coordinador a eliminar")
+    return redirect("listar_coordinadores")
