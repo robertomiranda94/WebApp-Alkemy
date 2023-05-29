@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-  </head>
-  <body>
-    <main class="container p-4">
-      <h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Lista de coordinadores</h3>
+{% extends "index.html" %}
+
+{% block titulo %} Lista Coordinadores {% endblock %}
+
+{% block contenido_principal %}
+<h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Lista de coordinadores</h3>
     
     <div class="p-5">        
 
@@ -51,9 +47,7 @@
         </table>
 
         <div class="d-flex justify-content-center p-5">
-            <a href="{% url 'nuevo_coordinador' %}" class="btn btn-success bg-gradient fw-bold">Agregar coordinador</a>
+            <a href="{% url 'registrar_coordinador' %}" class="btn btn-success bg-gradient fw-bold">Agregar coordinador</a>
         </div>
-    </main>
-    <footer></footer>
-  </body>
-</html>
+    </div>
+{% endblock %}

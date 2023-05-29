@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Listado de Empleados</title>
-  </head>
-  <body>
-    <header></header>
-    <main>
-      <br><br>
+{% extends "index.html" %}
+
+{% block titulo %} Lista Empleados {% endblock %}
+
+
+
+{% block contenido_principal %}
+<br><br>
       <table border="1" width="700">
           <tr>
               <th>ID</th>
@@ -24,26 +21,32 @@
                   <td>{{ empleado.apellido }}</td>
                   <td>{{ empleado.numero_legajo }}</td>
                   <td>
-                      <a href="#">
+                      <a href="{% url 'actualizar_empleado' empleado.id %}">
                           Modificar
                       </a>
 
                       |
 
-                      <a href="#">
+                      <a href="{% url 'eliminar_empleado' empleado.id %}">
                           Eliminar
                       </a>
 
                       |
 
-                      <a href="#">
+                      {% if cliente.activo %}
+                        <a href="{% url 'desactivar_empleado' empleado.id%}">
                           Desactivar
-                      </a>
+                        </a>
+                      {% else %}  
+                        <a href="{% url 'activar_empleado' empleado.id%}">
+                          Activar
+                        </a>
+                      {% endif %}
                   </td>
               </tr>
           {% endfor %}
       </table>
-    </main>
-    <footer></footer>
-  </body>
-</html>
+
+      </br></br>
+      <a href="{% url 'registrar_empleado' %}">Nuevo empleado</a>
+{% endblock %}

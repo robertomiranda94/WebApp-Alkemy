@@ -118,12 +118,10 @@ def actualizar_coordinador(request,id_coordinador):
             apellido_coordinador = request.POST["apellido"]
             numero_documento_coordinador = request.POST["numero_documento"]
             fecha_alta_coordinador = request.POST["fecha_alta"]
-            activo_coordinador = request.POST["activo"]
             
             coordinador.nombre = nombre_coordinador
             coordinador.apellido = apellido_coordinador
             coordinador.numero_documento = numero_documento_coordinador
-            coordinador.activo = activo_coordinador
             coordinador.save()
     except:
         return HttpResponse("No se ha podido actualizar el registro del empleado") 

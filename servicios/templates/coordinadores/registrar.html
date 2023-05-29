@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registrar coordinadores</title>
-  </head>
-  <body>
+{% extends "index.html" %}
 
-    <form method="post">
+{% block titulo %} Nuevo Coordinador {% endblock %}
+
+{% block contenido_principal %}
+<form method="post">
         {% csrf_token %}
 
         Nombre: <input type="text" name="nombre">
@@ -25,9 +21,7 @@
 
     <br><br>
 
-    <a href="">
+    <a href="{% url 'listar_coordinadores' %}">
         Ir al Listado
     </a>
-
-</body>
-</html>
+{% endblock %}

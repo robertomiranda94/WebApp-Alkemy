@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
-  </head>
-  <body class="bg-light">
-    <div class="container">
+{% extends "index.html" %}
+
+{% block titulo %} Actualizar Empleado {% endblock %}
+
+
+
+{% block contenido_principal %}
+<div class="container">
       <h1 class="text-center fw-bold mb-3">Actualizar empleado</h1>
       <div class="d-flex justify-content-center">
 
@@ -28,7 +26,5 @@
           <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
       </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
+</div>
+{% endblock %}
