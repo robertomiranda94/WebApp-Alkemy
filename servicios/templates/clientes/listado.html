@@ -25,7 +25,7 @@
                     <a href="{% url 'actualizar_cliente' cliente.id%}">
                       Modificar
                     </a>
-                    <a href="#"> <!-- La url para eliminar clientes no existe -->
+                    <a href="{%url 'eliminar_cliente' cliente.id %}"> <!-- La url para eliminar clientes no existe -->
                       Eliminar
                     </a>
                     {% if cliente.activo %}

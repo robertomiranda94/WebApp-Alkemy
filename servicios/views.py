@@ -163,6 +163,13 @@ def desactivar_cliente(request, id_cliente):
     
     return redirect("listar_clientes")
 
+def eliminar_cliente(request,id_cliente):
+    try:
+        cliente = Cliente.objects.get(id=id_cliente)
+        cliente.delete()
+    except:
+        return HttpResponse("No se ha encontrado el cliente a eliminar")
+    return redirect("listar_clientes")
 
 def registrar_coordinador(request):
     if request.method == 'POST':
