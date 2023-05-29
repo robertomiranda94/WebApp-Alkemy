@@ -88,6 +88,14 @@ def desactivar_empleado(request, id):
     empleado.save()
     return HttpResponse("El registro del empleado ingresado fué sido desactivado")
 
+def eliminar_empleado(request,id_empleado):
+    try:
+        empleado = Empleado.objects.get(id=id_empleado)
+        empleado.delete()
+    except:
+        return HttpResponse("No se ha encontrado el empleado a eliminar")
+    return redirect("listar_empleados")
+
 def listar_coordinadores(request):
     coordinadores = Coordinador.objects.all()
     context = {
