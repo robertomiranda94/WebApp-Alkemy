@@ -41,6 +41,13 @@
                                 -------------
                             {% endif %}
                         </td>
+                        <!-- Eliminar registro -->
+                        <td>
+                            <form action="{% url 'eliminar_coordinador' coordinador.id %}" method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-danger bg-gradient fw-bold">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
