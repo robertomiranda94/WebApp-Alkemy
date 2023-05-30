@@ -299,3 +299,15 @@ def registrar_servicio(request):
         except:
             return HttpResponse("Ocurrio un problema al registrar el nuevo servicio")
     return render(request, 'servicios/registrar.html')
+
+def desactivar_servicio(request,id_servicio):
+    try:
+        servicio = Servicio.objects.get(id=id_servicio)
+        if (servicio.activo):
+            servicio.activo = False
+            servicio.save()
+            return HttpResponse("El registro del servicio ingresado fué desactivado")
+        else:
+            return HttpResponse("El registro del servicio ya está desactivado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun servicio")
