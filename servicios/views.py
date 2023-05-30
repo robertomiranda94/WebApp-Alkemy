@@ -294,12 +294,10 @@ def actualizar_servicio(request, id_servicio):
             nombre_servicio = request.POST["nombre"]
             descripcion_servicio = request.POST["descripcion"]
             precio_servicio = request.POST["precio"]
-            fecha_alta_servicio = request.POST["fecha_alta"]
             
             servicio.nombre = nombre_servicio
             servicio.descripcion = descripcion_servicio
             servicio.precio = precio_servicio
-            servicio.fecha_alta = fecha_alta_servicio
             servicio.save()
     except:
         return HttpResponse("No se ha podido actualizar el registro del servicio") 
@@ -309,3 +307,18 @@ def actualizar_servicio(request, id_servicio):
         "servicios/actualizar.html",
         context
     )
+def registrar_servicio(request):
+    if request.POST:
+        try:
+            nombre_servicio = request.POST['nombre']
+            descripcion_servicio = request.POST['descripcion']
+            precio_servicio= request.POST['precio']
+            Servicio.objects.create(
+                nombre = nombre_servicio,
+                descripcion = descripcion_servicio,
+                precio = precio_servicio,
+                activo = True,
+            )
+        except:
+            return HttpResponse("Ocurrio un problema al registrar el nuevo servicio")
+    return render(request, 'servicios/registrar.html')
