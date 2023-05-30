@@ -283,3 +283,19 @@ def activar_servicio(request, id_servicio):
             return HttpResponse("Registro de servicio ya activado")
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
+
+def registrar_servicio(request):
+    if request.POST:
+        try:
+            nombre_servicio = request.POST['nombre']
+            descripcion_servicio = request.POST['descripcion']
+            precio_servicio= request.POST['precio']
+            Servicio.objects.create(
+                nombre = nombre_servicio,
+                descripcion = descripcion_servicio,
+                precio = precio_servicio,
+                activo = True,
+            )
+        except:
+            return HttpResponse("Ocurrio un problema al registrar el nuevo servicio")
+    return render(request, 'servicios/registrar.html')
