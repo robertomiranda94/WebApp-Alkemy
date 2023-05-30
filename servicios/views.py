@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from .models import Empleado,Coordinador,Cliente, ReservaServicio
+from .models import Empleado,Coordinador,Cliente, ReservaServicio,Servicio
 
 # Create your views here.
 
@@ -271,3 +271,15 @@ def eliminar_reserva(request, id_reserva):
         return HttpResponse("No se ha encontrado la reserva a eliminar.")
 
     return HttpResponse("Se ha eliminado la reserva correctamente.")
+
+def activar_servicio(request, id_servicio):
+    try:
+        servicio = Servicio.objects.get(id=id_servicio)
+        if not (servicio.activo):
+            servicio.activo = True
+            servicio.save()
+            return HttpResponse("El registro del servicio ingresado fué activado")
+        else:
+            return HttpResponse("Registro de servicio ya activado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto")
