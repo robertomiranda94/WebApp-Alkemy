@@ -262,3 +262,12 @@ def eliminar_coordinador(request,id_coordinador):
     except:
         return HttpResponse("No se ha encontrado el coordinador a eliminar")
     return redirect("listar_coordinadores")
+
+def eliminar_reserva(request, id_reserva):
+    try:
+        reserva = Producto.objects.get(id=id_reserva)
+        reserva.delete()
+    except:
+        return HttpResponse("No se ha encontrado la reserva a eliminar.")
+
+    return HttpResponse("Se ha eliminado la reserva correctamente.")
