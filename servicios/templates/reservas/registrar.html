@@ -4,7 +4,7 @@
 
 {% block contenido_principal %}
 <div>
-    <form method="post" action="{% url 'actualizar_reserva' reserva.id %}">
+    <form method="post">
         {% csrf_token %}
         <div>
           <label>Fecha Reserva:</label>
