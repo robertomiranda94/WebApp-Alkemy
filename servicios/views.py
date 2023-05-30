@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from .models import Empleado,Coordinador,Cliente
+from .models import Empleado,Coordinador,Cliente, ReservaServicio
 
 # Create your views here.
 
@@ -265,7 +265,7 @@ def eliminar_coordinador(request,id_coordinador):
 
 def eliminar_reserva(request, id_reserva):
     try:
-        reserva = Producto.objects.get(id=id_reserva)
+        reserva = ReservaServicio.objects.get(id=id_reserva)
         reserva.delete()
     except:
         return HttpResponse("No se ha encontrado la reserva a eliminar.")
