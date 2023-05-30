@@ -1,0 +1,117 @@
+{% extends "index.html" %}
+
+{% block titulo %} Actualizar Reserva {% endblock %}
+
+
+
+{% block contenido_principal %}
+<div>
+
+    <form method="post" action="{% url 'actualizar_reserva' reserva.id %}">
+        {% csrf_token %}
+
+        <div>
+          <label>Fecha Reserva:</label>
+          <input type="date" name="fecha_reserva" value="{{reserva.fecha_reserva}}">
+
+          <label>Cliente:</label>
+          <select name="clientes">
+
+                {% for cliente in clientes %}
+                     {% if reserva.cliente.id == cliente.id  and cliente.activo == True%}
+ 
+                         <option value="{{ cliente.id }}" SELECTED>
+                             {{ cliente.nombre }} {{ cliente.apellido }}
+                         </option>
+ 
+                     {% else %}
+ 
+                         <option value="{{ cliente.id }}">
+                             {{ cliente.nombre }} {{ cliente.apellido }}
+                         </option>
+ 
+                     {% endif %}
+ 
+                 {% endfor %}
+ 
+             </select>
+
+
+          <label>Responsable:</label>
+          <select name="responsables">
+
+                {% for coordinador in responsables %}
+                     {% if reserva.responsable.id == coordinador.id and coordinador.activo == True %}
+ 
+                         <option value="{{ coordinador.id }}" SELECTED>
+                             {{ coordinador.nombre }} {{ coordinador.apellido }}
+                         </option>
+ 
+                     {% else %}
+ 
+                         <option value="{{ coordinador.id }}">
+                             {{ coordinador.nombre }} {{ coordinador.apellido }}
+                         </option>
+ 
+                     {% endif %}
+ 
+                 {% endfor %}
+ 
+             </select>
+
+          <label>Empleado:</label>
+          <select name="empleados">
+
+                {% for empleado in empleados %}
+                     {% if reserva.empleado.id == empleado.id and empleado.activo == True %}
+ 
+                         <option value="{{ empleado.id }}" SELECTED>
+                             {{ empleado.nombre }} {{ empleado.apellido }}
+                         </option>
+ 
+                     {% else %}
+ 
+                         <option value="{{ empleado.id }}">
+                             {{ empleado.nombre }} {{ empleado.apellido }}
+                         </option>
+ 
+                     {% endif %}
+ 
+                 {% endfor %}
+ 
+             </select>
+
+          <label>Servicio:</label>
+          <select name="servicios">
+
+                {% for servicio in servicios %}
+                     {% if reserva.servicio.id == servicio.id and servicio.activo == True %}
+ 
+                         <option value="{{ servicio.id }}" SELECTED>
+                             {{ cliente.nombre }}
+                         </option>
+ 
+                     {% else %}
+ 
+                         <option value="{{ servicio.id }}">
+                             {{ servicio.nombre }}
+                         </option>
+ 
+                     {% endif %}
+ 
+                 {% endfor %}
+ 
+             </select>
+          
+          <label>Precio:</label>
+          <input type="number" step="any" name="precio" value="{{reserva.precio}}">
+
+          <div>
+            <input type="submit" value="Actualizar">
+          </div>
+        </div>
+
+    </form>
+          
+</div>
+{% endblock %}
