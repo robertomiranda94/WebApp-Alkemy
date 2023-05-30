@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
-from .models import Empleado,Coordinador,Cliente, ReservaServicio
+from .models import Empleado,Coordinador,Cliente, ReservaServicio,Servicio
 
 # Create your views here.
 
