@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+
+{% block titulo %} Registrar Reserva {% endblock %}
+
+{% block contenido_principal %}
+<div>
+    <form method="post" action="{% url 'actualizar_reserva' reserva.id %}">
+        {% csrf_token %}
+        <div>
+          <label>Fecha Reserva:</label>
+          <input type="date" name="fecha_reserva">
+
+          <label>Cliente:</label>
+          <select name="clientes">
+
+                {% for cliente in clientes %}
+                     {% if cliente.activo == True %}
+                         <option value="{{ cliente.id }}">
+                             {{ cliente.nombre }} {{ cliente.apellido }}
+                         </option>
+                     {% endif %}
+                 {% endfor %}
+             </select>
+
+          <label>Responsable:</label>
+          <select name="responsables">
+                {% for coordinador in responsables %}
+                     {% if coordinador.activo == True %}
+                         <option value="{{ coordinador.id }}">
+                             {{ coordinador.nombre }} {{ coordinador.apellido }}
+                         </option>
+                     {% endif %}
+                 {% endfor %}
+             </select>
+
+          <label>Empleado:</label>
+          <select name="empleados">
+                {% for empleado in empleados %}
+                     {% if empleado.activo == True %}
+ 
+                         <option value="{{ empleado.id }}">
+                             {{ empleado.nombre }} {{ empleado.apellido }}
+                         </option>
+                     {% endif %}
+                 {% endfor %}
+             </select>
+
+          <label>Servicio:</label>
+          <select name="servicios">
+
+                {% for servicio in servicios %}
+                     {% if servicio.activo == True %}
+                         <option value="{{ servicio.id }}">
+                             {{ servicio.nombre }}
+                         </option>
+                     {% endif %}
+ 
+                 {% endfor %}
+ 
+             </select>
+          
+          <label>Precio:</label>
+          <input type="number" step="any" name="precio">
+          <div>
+            <input type="submit" value="Registrar">
+          </div>
+        </div>
+
+    </form>
+          
+</div>
+{% endblock %}
