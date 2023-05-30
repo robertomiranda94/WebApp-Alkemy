@@ -283,3 +283,29 @@ def activar_servicio(request, id_servicio):
             return HttpResponse("Registro de servicio ya activado")
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
+
+def actualizar_servicio(request, id_servicio):
+    try:
+        servicio = Servicio.objects.get(id=id_servicio)
+        context = {
+            "servicio": servicio
+        }
+        if request.POST:
+            nombre_servicio = request.POST["nombre"]
+            descripcion_servicio = request.POST["descripcion"]
+            precio_servicio = request.POST["precio"]
+            fecha_alta_servicio = request.POST["fecha_alta"]
+            
+            servicio.nombre = nombre_servicio
+            servicio.descripcion = descripcion_servicio
+            servicio.precio = precio_servicio
+            servicio.fecha_alta = fecha_alta_servicio
+            servicio.save()
+    except:
+        return HttpResponse("No se ha podido actualizar el registro del servicio") 
+    
+    return render(
+        request,
+        "servicios/actualizar.html",
+        context
+    )
