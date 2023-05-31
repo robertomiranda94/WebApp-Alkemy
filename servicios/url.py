@@ -26,7 +26,7 @@ urlpatterns = [
     #path('servicios/actualizar/', views.actualizar_servicio, name='actualizar_servicio'),
     path('servicios/activar/<int:id_servicio>', views.activar_servicio, name='activar_servicio'),
     path('servicios/desactivar/<int:id_servicio>', views.desactivar_servicio, name='desactivar_servicio'),
-    path('reservas/eliminar/<int:id_reserva>', views.eliminar_reserva, name='eliminar_reserva')
+    path('reservas/eliminar/<int:id_reserva>', views.eliminar_reserva, name='eliminar_reserva'),
     path('servicios/actualizar/<int:id_servicio>', views.actualizar_servicio, name='actualizar_servicio'),
     path('servicios/listado/', views.listar_servicios, name='listar_servicios'),
 ]

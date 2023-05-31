@@ -1,0 +1,36 @@
+{% block title %}Listado de reservas{% endblock %}
+
+{% block content %}
+  <h1>Listado de reservas</h1>
+  <a href="{% url 'registrar_reserva' %}">Nueva reserva</a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Servicio</th>
+        <th>Cliente</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reserva in reservas %}
+        <tr>
+          <td>{{ reserva.id }}</td>
+          <td>{{ reserva.servicio.nombre }}</td>
+          <td>{{ reserva.cliente.nombre }}</td>
+          <td>{{ reserva.precio }}</td>
+          <td>
+            <a href="{% url 'registrar_reserva' %}">Nueva</a>
+            <a href="{% url 'actualizar_reserva' reserva.id %}">Modificar</a>
+            <a href="{% url 'eliminar_reserva' reserva.id %}">Eliminar</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No hay reservas disponibles.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
