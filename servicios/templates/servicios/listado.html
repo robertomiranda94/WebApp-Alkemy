@@ -1,0 +1,30 @@
+{% block titulo %} Listado de servicios {% endblock %}
+
+
+{% block content %}
+  <h1>Listado de servicios</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for servicio in servicios %}
+        <tr>
+          <td>{{ servicio.id }}</td>
+          <td>{{ servicio.nombre }}</td>
+          <td>{{ servicio.precio }}</td>
+          <td>{{ servicio.precio }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No hay servicios disponibles.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
