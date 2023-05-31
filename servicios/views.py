@@ -335,3 +335,14 @@ def desactivar_servicio(request,id_servicio):
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun servicio")
 
+def listar_servicios(request):
+    servicios = Servicio.objects.all()
+    context = {
+        'servicios': servicios
+    }
+    return render(
+        request,
+        "servicios/listado.html",
+        context
+    )
+
