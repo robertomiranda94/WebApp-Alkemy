@@ -10,6 +10,7 @@
         <th>Nombre</th>
         <th>Descripción</th>
         <th>Precio</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +18,32 @@
         <tr>
           <td>{{ servicio.id }}</td>
           <td>{{ servicio.nombre }}</td>
+          <td>{{ servicio.descripcion }}</td>
           <td>{{ servicio.precio }}</td>
-          <td>{{ servicio.precio }}</td>
+          <td>
+            <a href="{% url 'actualizar_servicio' servicio.id %}">
+                Modificar
+            </a>
+
+            |
+            <!--Agregar view eliminar
+            <a href="#">
+                Eliminar
+            </a>
+            |
+            -->
+   
+
+            {% if servicio.activo %}
+              <a href="{% url 'desactivar_servicio' servicio.id%}">
+                Desactivar
+              </a>
+            {% else %}  
+              <a href="{% url 'activar_servicio' servicio.id%}">
+                Activar
+              </a>
+            {% endif %}
+        </td>
         </tr>
       {% empty %}
         <tr>
@@ -27,4 +52,5 @@
       {% endfor %}
     </tbody>
   </table>
+  <a href="{% url 'registrar_servicio' %}">Nuevo Servicio</a>
 {% endblock %}

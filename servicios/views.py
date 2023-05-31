@@ -278,7 +278,7 @@ def activar_servicio(request, id_servicio):
         if not (servicio.activo):
             servicio.activo = True
             servicio.save()
-            return HttpResponse("El registro del servicio ingresado fué activado")
+            return redirect('listar_servicios')
         else:
             return HttpResponse("Registro de servicio ya activado")
     except ObjectDoesNotExist:
@@ -329,7 +329,7 @@ def desactivar_servicio(request,id_servicio):
         if (servicio.activo):
             servicio.activo = False
             servicio.save()
-            return HttpResponse("El registro del servicio ingresado fué desactivado")
+            return redirect('listar_servicios')
         else:
             return HttpResponse("El registro del servicio ya está desactivado")
     except ObjectDoesNotExist:
