@@ -29,4 +29,5 @@ urlpatterns = [
     path('reservas/eliminar/<int:id_reserva>', views.eliminar_reserva, name='eliminar_reserva'),
     path('servicios/actualizar/<int:id_servicio>', views.actualizar_servicio, name='actualizar_servicio'),
     path('servicios/listado/', views.listar_servicios, name='listar_servicios'),
+    path('reservas/nuevo', views.registrar_reservas, name = 'registrar_reserva'),
 ]

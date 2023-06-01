@@ -3,6 +3,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from .models import Empleado,Coordinador,Cliente, ReservaServicio,Servicio
 
+
+
 # Create your views here.
 
 def index(request):
@@ -345,4 +347,42 @@ def listar_servicios(request):
         "servicios/listado.html",
         context
     )
+
+def registrar_reservas(request):
+    if request.method == 'POST':
+        try:
+            fecha_reserva = request.POST['fecha_reserva']
+            cliente_reserva = Cliente.objects.get(id = request.POST['clientes'])
+            responsable_reserva = Coordinador.objects.get(id = request.POST['responsables'])
+            empleado_reserva = Empleado.objects.get(id = request.POST['empleados'])
+            servicio_reserva = Servicio.objects.get(id = request.POST['servicios'])
+            precio_reserva = request.POST['precio']
+            
+            ReservaServicio.objects.create(
+                fecha_reserva=fecha_reserva,
+                cliente=cliente_reserva,
+                responsable=responsable_reserva,
+                empleado=empleado_reserva,
+                servicio=servicio_reserva,
+                precio=precio_reserva,
+            )
+            
+            return HttpResponse("La reserva se ha registrado exitosamente")
+        
+        except Exception as e:
+            return HttpResponse("Ocurrió un problema al registrar la nueva reserva: " + str(e))
+
+    clientes = Cliente.objects.all()
+    responsables = Coordinador.objects.all()
+    empleados = Empleado.objects.all()
+    servicios = Servicio.objects.all()
+
+    context = {
+        "clientes": clientes,
+        "responsables": responsables,
+        "empleados": empleados,
+        "servicios": servicios,
+    }
+
+    return render(request, 'reservas/registrar.html', context)
 
