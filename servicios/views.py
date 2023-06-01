@@ -348,6 +348,7 @@ def listar_servicios(request):
         context
     )
 
+
 def registrar_reservas(request):
     if request.method == 'POST':
         try:
@@ -385,4 +386,16 @@ def registrar_reservas(request):
     }
 
     return render(request, 'reservas/registrar.html', context)
+
+
+def listar_reservas(request):
+    reservas = ReservaServicio.objects.all()
+    context = {
+        'reservas':reservas
+    }
+    return render(
+        request,
+        "reservas/listado.html",
+        context
+    )
 
