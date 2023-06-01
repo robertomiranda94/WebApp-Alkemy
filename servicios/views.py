@@ -399,3 +399,37 @@ def listar_reservas(request):
         context
     )
 
+
+def actualizar_reserva_de_servicio(request, id_reserva):
+    reserva = ReservaServicio.objects.get(id = id_reserva)
+            
+    if request.method == 'POST':
+        try:
+            reserva.fecha_reserva = request.POST['fecha_reserva']
+            reserva.cliente = Cliente.objects.get(id = request.POST['clientes'])
+            reserva.responsable= Coordinador.objects.get(id = request.POST['responsables'])
+            reserva.empleado = Empleado.objects.get(id = request.POST['empleados'])
+            reserva.servicio = Servicio.objects.get(id = request.POST['servicios'])
+            reserva.precio = request.POST['precio']
+            reserva.save()   
+            
+            return HttpResponse("La reserva se ha actualizado exitosamente")
+        
+        except Exception as e:
+            return HttpResponse("Ocurrió un problema al actualizar la nueva reserva: " + str(e))
+
+    clientes = Cliente.objects.all()
+    responsables = Coordinador.objects.all()
+    empleados = Empleado.objects.all()
+    servicios = Servicio.objects.all()
+
+    context = {
+        "clientes": clientes,
+        "responsables": responsables,
+        "empleados": empleados,
+        "servicios": servicios,
+        "reserva": reserva,
+        
+    }
+
+    return render(request, 'reservas/actualizar.html', context)
