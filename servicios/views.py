@@ -346,3 +346,13 @@ def listar_servicios(request):
         context
     )
 
+def listar_reservas(request):
+    reservas = ReservaServicio.objects.all()
+    context = {
+        'reservas':reservas
+    }
+    return render(
+        request,
+        "reservas/listado.html",
+        context
+    )
