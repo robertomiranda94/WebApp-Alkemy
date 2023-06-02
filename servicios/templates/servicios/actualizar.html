@@ -20,7 +20,7 @@
           </div>
           
           <label>Precio:</label>
-          <input name="precio" type="number" value="{{servicio.precio}}" >
+          <input name="precio" type="number" value="{{servicio.precio|floatformat:0}}" >
 
           <div>
             <input type="submit" value="Actualizar">
