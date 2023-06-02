@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from servicios import url
+import servicios.url,api.url
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(url)), # Ruta de la página de inicio
+    path('', include(servicios.url)), # Ruta de la página de inicio
+    path('',include(api.url))
 ]
