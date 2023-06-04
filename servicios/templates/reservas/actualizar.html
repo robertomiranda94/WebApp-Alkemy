@@ -12,7 +12,7 @@
 
         <div>
           <label>Fecha Reserva:</label>
-          <input type="date" name="fecha_reserva" value="{{reserva.fecha_reserva}}">
+          <input type="date" name="fecha_reserva" value="{{reserva.fecha_reserva|date:'Y-m-d'}}">
 
           <label>Cliente:</label>
           <select name="clientes">
@@ -88,7 +88,7 @@
                      {% if reserva.servicio.id == servicio.id and servicio.activo == True %}
  
                          <option value="{{ servicio.id }}" SELECTED>
-                             {{ cliente.nombre }}
+                             {{ servicio.nombre }}
                          </option>
  
                      {% else %}
