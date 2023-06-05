@@ -1,6 +1,8 @@
-{% block title %}Listado de reservas{% endblock %}
+{% extends "index.html" %}
 
-{% block content %}
+{% block titulo %} Registrar Reserva {% endblock %}
+
+{% block contenido_principal %}
   <h1>Listado de reservas</h1>
   <a href="{% url 'registrar_reserva' %}">Nueva reserva</a>
   <table>

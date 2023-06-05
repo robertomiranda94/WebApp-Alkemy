@@ -1,0 +1,452 @@
+:root{
+    --main-color: #5A57FF;
+    --accent-color:#C2C0FF;
+    --font-color:#353535;
+    --border-color:#5a57ff1c;
+    --bg-color:#FAF9FF;
+    --inaactive-color:#EF767A;
+    --active-color:#49BEAA;
+    color: var(--font-color);
+}
+*{
+    font-family: 'Poppins';
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: var(--font-color);
+}
+a:hover{
+    color: var(--accent-color);
+}
+header{
+    display: none;
+}
+
+.sidebar{
+    position: fixed;
+    width: 256px;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sidebar ul{
+    width: 100%;
+}
+
+
+
+.link{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 16px 0;
+    padding-left: 32px;
+    cursor: pointer;
+    color: var(--accent-color);
+}
+.link span svg path{
+    fill: var(--accent-color);
+}
+.link:hover span{
+    color: white;
+    fill: white;
+}
+.link:hover svg path{
+    fill: white;
+}
+
+.link .icono{
+    margin: 0 8px;
+    color: var(--accent-color);
+}
+.seleccionado span{
+    color: white;
+}
+.seleccionado span svg path{
+    fill: white;
+}
+.elegido{
+    position: absolute;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background-color: white;
+    border-radius: 0 16px 16px 0;
+    visibility: hidden;
+}
+.seleccionado .elegido{
+    visibility: visible;
+}
+
+.body-main{
+    margin-left: 256px;
+    width: calc(100% - 256px);
+    min-height: 100vh;
+    background-color: white;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color);
+}
+.contenido{
+    width: 100%;
+    max-width: 1400px;
+    height: auto;
+    padding: 0 32px;
+}
+.resumen{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.caja-dashboard{
+    flex: 1;
+    min-width: 180px;
+    max-width: 208px;
+    height: 90px;
+    padding: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.destacados{
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.caja-dashboard:hover{
+    background-color: var(--border-color);
+    color: var(--font-color);
+}
+.tabla-ultimos-movimientos{
+    width: 900px;
+    padding: 32px 0;
+    min-height: 600px;
+    margin: 0 16px;
+    margin-bottom: 32px;
+
+}
+.logo{
+    margin: 32px 0;
+}
+.acciones{
+    margin:0 16px;
+    flex: 1;
+    min-width: 224px;
+    height: 600px;
+    padding: 32px 0;
+}
+.acciones h4{
+    margin-left: 16px;
+}
+.lista-acciones{
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+.lista-acciones .accion{
+   margin-bottom: 21px;
+    cursor: pointer;
+    transition: 0.2S;
+}
+.lista-acciones .accion:hover{
+    text-decoration: underline;
+    color: var(--accent-color);
+}
+.tabla-ultimos thead{
+    background-color: white;
+
+}
+.tabla-dashboard th{
+    background-color: white !important;
+    color: var(--font-color) !important;
+}
+
+.caja{
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+
+.opciones-lista{
+    margin-bottom:32px ;
+    height: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tabla{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 16px;
+}
+.tabla tr{
+    border-bottom: 1px solid var(--border-color);
+}
+.tabla tr th{
+    font-size: 14px;
+    background-color: var(--main-color);
+    color: white;
+}
+.tabla tr th:first-child{
+    border-radius: 8px 0 0 0 ;
+}
+.tabla tr th:last-child{
+    border-radius: 0 8px 0 0;
+}
+.tabla tr td,th{
+    padding: 16px 0;
+}
+.tabla-fijo{
+    width: 100px;
+}
+.tabla-estado{
+    display: flex;
+    justify-content: center;
+}
+.tabla-estado a{
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 22px;
+    height: 36px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.tabla-estado .activo{
+    background-color: var(--active-color);
+    display: flex;
+}
+.tabla-estado .inactivo{
+    background-color: var(--inaactive-color);
+}
+.tabla .tabla-acciones a{
+    display: block;
+    width: 100%;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+}
+.tabla .tabla-acciones a:hover{
+    transform: scale(1.2);
+}
+.tabla .tabla-acciones a:hover svg path{
+    fill: var(--main-color);
+}
+
+/*Estilos Formulario*/
+
+.formulario{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+.formulario .contenedor-campos{
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 64px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.formulario .contenedor-campos .campo-formulario{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+.formulario .contenedor-campos .campo-formulario label{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.formulario .contenedor-campos .campo-formulario textarea{
+    background-color: white;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+}
+.formulario .contenedor-campos .campo-formulario input{
+    background-color: white;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+}
+.campo-formulario input::placeholder{
+    font-weight: 400;
+    color: #CCCCCC;
+}
+.campo-formulario select{
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 12px;
+    background-color: white;
+}
+
+.volver-link{
+    margin-top: 16px;
+    align-self: center;
+}
+.volver-link:hover{
+    text-decoration: underline;
+}
+
+.boton{
+    padding: 16px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--main-color);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.toast-exito{
+    position: absolute;
+    top: 20px;
+    padding: 16px;
+    background-color: var(--active-color);
+    color: white;
+    border-radius: 8px;
+    animation: toast 5s ease-in-out forwards;
+}
+.toast-fallo{
+    position: absolute;
+    top: 20px;
+    padding: 16px;
+    background-color: var(--inaactive-color);
+    color: white;
+    border-radius: 8px;
+    animation: toast 5s ease-in-out forwards;
+}
+
+.font-blanco{
+    color: white;
+}
+.font-suave{
+    font-weight: 400;
+}
+.font-medio{
+    font-weight: 600;
+}
+.font-fuerte{
+    font-weight: 700;
+}
+.font-14{
+    font-size: 14px;
+}
+.font-16{
+    font-size: 16px;
+}
+.font-12{
+    font-size: 12px;
+}
+.margen-abajo{
+    margin-bottom: 32px;
+}
+.centrado{
+    text-align: center;
+}
+.izquierda{
+    text-align: left;
+}
+
+.titulo{
+    margin: 32px 0;
+    font-size: 28px;
+}
+.sub-titulo{
+    font-size: 16px;
+    margin-bottom: 32px;
+    margin-left: 32px;
+}
+
+
+
+/*Responsive*/
+@media only screen and (max-width: 900px)  {
+    .contenido{
+        padding: 0;
+    }
+    .titulo{
+        padding-left: 16px;
+    }
+    .acciones{
+        height: auto;
+        margin-bottom: 32px;
+    }
+}
+@media only screen and (max-width: 700px)  {
+    header{
+        display: flex;
+        width: 100%;
+        height: 64px;
+        background-color: var(--main-color);
+        align-items: center;
+    }
+    header .header-icon{
+        padding: 0 16px;
+        display: flex;
+    }
+    .sidebar{
+        transform: translateX(-256px);
+        margin-top: 64px;
+        transition: 0.2s;
+    }
+    .mostrar{
+        transform: translateX(0px);
+
+    }
+    .body-main{
+        margin: 0;
+        width: 100%;
+    }
+    .caja-dashboard{
+        max-width: none;
+    }
+    .titulo{
+        font-size: 21px;
+    }
+   
+}
+
+
+
+/*Animaciones*/
+@keyframes toast{
+    0%{
+        opacity: 0;
+    }
+    20%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}

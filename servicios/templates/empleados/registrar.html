@@ -2,26 +2,39 @@
 
 {% block titulo %} Nuevo Empleado {% endblock %}
 
-
-
 {% block contenido_principal %}
-<form method="post">
-    {% csrf_token %}
+{%if creado%}
+    <div class="toast-exito">Creado con exito</div>
+{%endif%}
+{%if fallo%}
+    <div class="toast-fallo">Ocurrió un error al crear el registro</div>
+{%endif%}
+<div class="contenido">
+    <h1 class="titulo">Registrar Empleado</h1>
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        <div class="contenedor-campos">
+            <div class="campo-formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" required>
+            </div>
+            <div class="campo-formulario">
+                <label>Apellido:</label>
+                <input type="text" name="apellido" placeholder="Ingrese apellido">
+            </div>
+            <div class="campo-formulario">
+                <label>N° Legajo:</label>
+                <input type="number" name="legajo" placeholder="xxxxxxxx" required>
+            </div>
+            
+            <input class="boton" type="submit" value="Guardar registro">
 
-    Nombre: <input type="text" name="nombre">
-    <br><br>
-    Apellido: <input type="text" name="apellido">
-    <br><br>
-    N° Legajo <input type="number" name="legajo">
-    <br><br>
+            <a href="{% url 'listar_empleados' %}" class="volver-link">
+                Volver al listado
+            </a>
+        </div>
+    </form>
 
-    <input type="submit" value="Guardar registro">
+</div>
 
-</form>
-
-<br><br>
-
-<a href="{% url 'listar_empleados' %}">
-    Ir al Listado
-</a>
 {% endblock %}
