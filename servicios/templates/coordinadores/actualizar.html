@@ -3,29 +3,34 @@
 {% block titulo %} Actualizar Coordinador {% endblock %}
 
 {% block contenido_principal %}
-<h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Actualizar Coordinador</h3>
+<div class="contenido">
+  <h1 class="titulo">Actualizar Coordinador</h1>
+</div>
       <div class="d-flex justify-content-center p-5 bg-warning bg-opacity-75 rounded-5">
-
-        <form method="post">
+        <form method="post" class="formulario">
             {% csrf_token %}
 
-            <div class="form-group">
+            <div class="contenedor-campos">
+              <div class="campo-formulario">
               <label class="fw-semibold">Nombre:</label>
               <input type="text" name="nombre" maxlength="20" class="mb-3 form-control" value="{{coordinador.nombre}}">
-
+              </div>
+              <div class="campo-formulario">
               <label class="fw-semibold">Apellido:</label>
               <input type="text" name="apellido" maxlength="20" class="mb-3 form-control" value="{{coordinador.apellido}}">
-
+              </div>
+              <div class="campo-formulario">
               <label class="fw-semibold">DNI:</label>
               <input type="number" maxlength="10" name="numero_documento" class="mb-3 form-control" value="{{coordinador.numero_documento}}">
-
+              </div>
+              <div class="campo-formulario">
               <label class="fw-semibold">Fecha de alta:</label>
               <input type="date" name="fecha_alta" class="mb-3 form-control" value="{{coordinador.fecha_alta}}">
               </div>
-
-              <div class="d-flex justify-content-center pt-5">
-                <input type="submit" class="btn btn-primary bg-gradient fw-bold" value="Actualizar">
-              </div>
+                <input type="submit" class="boton" value="Actualizar">
+                <a href="{% url 'listar_coordinadores' %}" class="volver-link">
+                  Volver al listado
+              </a>
             </div>
 
           </form>
