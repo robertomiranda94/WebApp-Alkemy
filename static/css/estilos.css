@@ -40,6 +40,9 @@ header{
 .sidebar ul{
     width: 100%;
 }
+
+
+
 .link{
     position: relative;
     display: flex;
@@ -410,6 +413,12 @@ header{
     }
     .sidebar{
         transform: translateX(-256px);
+        margin-top: 64px;
+        transition: 0.2s;
+    }
+    .mostrar{
+        transform: translateX(0px);
+
     }
     .body-main{
         margin: 0;
