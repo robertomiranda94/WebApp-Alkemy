@@ -8,7 +8,19 @@ from .models import Empleado,Coordinador,Cliente, ReservaServicio,Servicio
 # Create your views here.
 
 def index(request):
+    lista_reservas = ReservaServicio.objects.all()
+    servicios = ReservaServicio.objects.count()
+    clientes = Cliente.objects.count()
+    empleados = Empleado.objects.count()
+    reservas = ReservaServicio.objects.count()
+    coordinadores = Coordinador.objects.count()
     context = {
+        'lista_reservas':lista_reservas,
+        'servicios':servicios,
+        'clientes':clientes,
+        'empleados':empleados,
+        'reservas':reservas,
+        'coordinadores':coordinadores,
         'title': 'Mi página de inicio',
         'message': '¡Hola, mundo!'
     }
@@ -50,7 +62,7 @@ def activar_registro_empleado(request, id):
         if not (empleado.activo):
             empleado.activo = True
             empleado.save()
-            return HttpResponse("El registro del empleado ingresado ha sido activado")
+            return redirect("listar_empleados")
         else:
             return HttpResponse("No es necesario activar el registro de empleado")             
     except ObjectDoesNotExist:
@@ -85,10 +97,14 @@ def actualizar_empleado(request, id_empleado):
     )
 
 def desactivar_empleado(request, id):
-    empleado = get_object_or_404(Empleado, id=id)
-    empleado.activo = False
-    empleado.save()
-    return HttpResponse("El registro del empleado ingresado fué sido desactivado")
+    try:
+        empleado = get_object_or_404(Empleado, id=id)
+        empleado.activo = False
+        empleado.save()
+        return redirect("listar_empleados")
+    except:
+        return HttpResponse(f"No se ha podido activar el cliente {empleado.nombre} {empleado.apellido}")
+    
 
 def eliminar_empleado(request,id_empleado):
     try:

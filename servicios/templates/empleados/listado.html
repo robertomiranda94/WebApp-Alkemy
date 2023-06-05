@@ -5,48 +5,51 @@
 
 
 {% block contenido_principal %}
-<br><br>
-      <table border="1" width="700">
+<div class="contenido">
+  <h1 class="titulo">Empleados</h1>
+    <div class="opciones-lista">
+      <div class="busqueda"></div>
+      <a class="boton" href="{% url 'registrar_empleado' %}">Añadir</a>
+    </div>
+    <div class="caja">
+      <table class="tabla">
           <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>N° Legajo</th>
-              <th>Acciones</th>
+              <th>Id</th>
+              <th class="izquierda">Nombre</th>
+              <th class="izquierda">Apellido</th>
+              <th class="izquierda">N° Legajo</th>
+              <th class="centrado">Estado</th>
+              <th class="izquierda" width="100px">Acciones</th>
           </tr>
           {% for empleado in empleados %}
               <tr>
-                  <td>{{ empleado.id }}</td>
-                  <td>{{ empleado.nombre }}</td>
+                  <td class="centrado" width="50px">{{ empleado.id }}</td>
+                  <td class="izquierda">{{ empleado.nombre }}</td>
                   <td>{{ empleado.apellido }}</td>
                   <td>{{ empleado.numero_legajo }}</td>
-                  <td>
+                  <td class="tabla-estado centrado">
+                    {% if empleado.activo %}
+                        <a href="{% url 'desactivar_empleado' empleado.id%}" class="activo">
+                          Activo
+                        </a>
+                    {% else %}  
+                      <a href="{% url 'activar_empleado' empleado.id%}" class="inactivo">
+                        Inactivo
+                      </a>
+                    {% endif %}
+                  </td>
+                  <td class="tabla-acciones">
                       <a href="{% url 'actualizar_empleado' empleado.id %}">
-                          Modificar
+                          <span>
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12.7512 0.678513L11.0496 2.38007L15.6199 6.95039L17.3215 5.24883C18.2004 4.36992 18.2004 2.94609 17.3215 2.06718L15.9363 0.678513C15.0574 -0.200394 13.6336 -0.200394 12.7547 0.678513H12.7512ZM10.2551 3.17461L2.06016 11.373C1.69453 11.7387 1.42734 12.1922 1.27969 12.6879L0.0351567 16.9172C-0.0527339 17.216 0.0281255 17.5359 0.246094 17.7539C0.464063 17.9719 0.783985 18.0527 1.0793 17.9684L5.30859 16.7238C5.8043 16.5762 6.25781 16.309 6.62344 15.9434L14.8254 7.74492L10.2551 3.17461Z" fill="#353535"/>
+                              </svg>                              
+                          </span>
                       </a>
-
-                      |
-
-                      <a href="{% url 'eliminar_empleado' empleado.id %}">
-                          Eliminar
-                      </a>
-
-                      |
-
-                      {% if cliente.activo %}
-                        <a href="{% url 'desactivar_empleado' empleado.id%}">
-                          Desactivar
-                        </a>
-                      {% else %}  
-                        <a href="{% url 'activar_empleado' empleado.id%}">
-                          Activar
-                        </a>
-                      {% endif %}
                   </td>
               </tr>
           {% endfor %}
       </table>
-
-      </br></br>
-      <a href="{% url 'registrar_empleado' %}">Nuevo empleado</a>
+    </div>
+</div>
 {% endblock %}
