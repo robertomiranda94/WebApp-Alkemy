@@ -5,38 +5,40 @@
 
 
 {% block contenido_principal %}
-<div>
+<div class="contenido">
+    <h1 class="titulo">Modificar Reserva</h1>
 
-    <form method="post" action="{% url 'actualizar_reserva' reserva.id %}">
+    <form method="post" action="{% url 'actualizar_reserva' reserva.id %}" class="formulario">
         {% csrf_token %}
 
-        <div>
-          <label>Fecha Reserva:</label>
-          <input type="date" name="fecha_reserva" value="{{reserva.fecha_reserva|date:'Y-m-d'}}">
-
-          <label>Cliente:</label>
-          <select name="clientes">
-
-                {% for cliente in clientes %}
-                     {% if reserva.cliente.id == cliente.id  and cliente.activo == True%}
- 
-                         <option value="{{ cliente.id }}" SELECTED>
-                             {{ cliente.nombre }} {{ cliente.apellido }}
-                         </option>
- 
-                     {% else %}
- 
-                         <option value="{{ cliente.id }}">
-                             {{ cliente.nombre }} {{ cliente.apellido }}
-                         </option>
- 
-                     {% endif %}
- 
-                 {% endfor %}
- 
-             </select>
-
-
+        <div class="contenedor-campos">
+            <div class="campo-formulario">
+                <label>Fecha Reserva:</label>
+                <input type="date" name="fecha_reserva" value="{{reserva.fecha_reserva|date:'Y-m-d'}}">
+            </div>
+            <div class="campo-formulario">
+                <label>Cliente:</label>
+                <select name="clientes">
+                    {% for cliente in clientes %}
+                        {% if reserva.cliente.id == cliente.id  and cliente.activo == True%}
+    
+                            <option value="{{ cliente.id }}" SELECTED>
+                                {{ cliente.nombre }} {{ cliente.apellido }}
+                            </option>
+    
+                        {% else %}
+    
+                            <option value="{{ cliente.id }}">
+                                {{ cliente.nombre }} {{ cliente.apellido }}
+                            </option>
+    
+                        {% endif %}
+    
+                    {% endfor %}
+    
+                </select>
+            </div>
+        <div class="campo-formulario">
           <label>Responsable:</label>
           <select name="responsables">
 
@@ -59,7 +61,9 @@
  
              </select>
 
-          <label>Empleado:</label>
+            </div>
+            <div class="campo-formulario"> 
+             <label>Empleado:</label>
           <select name="empleados">
 
                 {% for empleado in empleados %}
@@ -81,7 +85,9 @@
  
              </select>
 
-          <label>Servicio:</label>
+            </div>
+            <div class="campo-formulario">
+             <label>Servicio:</label>
           <select name="servicios">
 
                 {% for servicio in servicios %}
@@ -103,12 +109,15 @@
  
              </select>
           
-          <label>Precio:</label>
+            </div>
+            <div class="campo-formulario">
+             <label>Precio:</label>
           <input type="number" step="any" name="precio" value="{{reserva.precio}}">
-
-          <div>
-            <input type="submit" value="Actualizar">
-          </div>
+            </div>
+            <input  class="boton" type="submit" value="Actualizar">
+            <a href="{% url 'listar_reservas' %}" class="volver-link">
+                Volver al listado
+            </a>
         </div>
 
     </form>
