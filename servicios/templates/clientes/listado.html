@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Listado de Clientes</title>
-  </head>
-  <body>
-    <header></header>
-    <main>
-      <br><br>
-      <table border="1" width="700">
+{% extends "index.html" %}
+
+{% block titulo %} Registrar Reserva {% endblock %}
+
+{% block contenido_principal %}
+      <table>
           <tr>
               <th>ID</th>
               <th>Nombre</th>
@@ -41,7 +35,4 @@
               </tr>
           {% endfor %}
       </table>
-    </main>    
-    <footer></footer>
-  </body>
-</html>
+{%endblock%}

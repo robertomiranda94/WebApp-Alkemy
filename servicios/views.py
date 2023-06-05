@@ -8,7 +8,7 @@ from .models import Empleado,Coordinador,Cliente, ReservaServicio,Servicio
 # Create your views here.
 
 def index(request):
-    lista_reservas = ReservaServicio.objects.all()
+    lista_reservas = ReservaServicio.objects.all().order_by('-id')
     servicios = ReservaServicio.objects.count()
     clientes = Cliente.objects.count()
     empleados = Empleado.objects.count()
@@ -38,8 +38,23 @@ def registrar_empleado(request):
                 numero_legajo = numero_legajo,
                 activo = True
             )
+            context={
+                'creado':True
+            }
+            return render(
+            request,
+            "empleados/registrar.html",
+            context
+            )
         except:
-            return HttpResponse("Ocurrió un error al crear el usuario")
+            context={
+                'fallo':True
+            }
+            return render(
+            request,
+            "empleados/registrar.html",
+            context
+            )
     return render(
         request,
         "empleados/registrar.html"

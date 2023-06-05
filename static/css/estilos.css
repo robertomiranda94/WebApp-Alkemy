@@ -118,6 +118,7 @@ header{
     cursor: pointer;
     transition: 0.2s;
 }
+
 .destacados{
     margin-top: 16px;
     display: flex;
@@ -126,6 +127,7 @@ header{
 }
 .caja-dashboard:hover{
     background-color: var(--border-color);
+    color: var(--font-color);
 }
 .tabla-ultimos-movimientos{
     width: 900px;
@@ -251,6 +253,7 @@ header{
 .formulario{
     display: flex;
     justify-content: center;
+    margin-bottom: 32px;
 }
 .formulario .contenedor-campos{
     background-color: white;
@@ -270,6 +273,13 @@ header{
     font-weight: 500;
     margin-bottom: 8px;
 }
+.formulario .contenedor-campos .campo-formulario textarea{
+    background-color: white;
+    border: 1px solid var(--border-color);
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+}
 .formulario .contenedor-campos .campo-formulario input{
     background-color: white;
     border: 1px solid var(--border-color);
@@ -281,6 +291,14 @@ header{
     font-weight: 400;
     color: #CCCCCC;
 }
+.campo-formulario select{
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    padding: 12px;
+    background-color: white;
+}
+
 .volver-link{
     margin-top: 16px;
     align-self: center;
@@ -301,6 +319,25 @@ header{
     font-weight: bold;
     cursor: pointer;
     font-size: 14px;
+}
+
+.toast-exito{
+    position: absolute;
+    top: 20px;
+    padding: 16px;
+    background-color: var(--active-color);
+    color: white;
+    border-radius: 8px;
+    animation: toast 5s ease-in-out forwards;
+}
+.toast-fallo{
+    position: absolute;
+    top: 20px;
+    padding: 16px;
+    background-color: var(--inaactive-color);
+    color: white;
+    border-radius: 8px;
+    animation: toast 5s ease-in-out forwards;
 }
 
 .font-blanco{
@@ -324,6 +361,9 @@ header{
 .font-12{
     font-size: 12px;
 }
+.margen-abajo{
+    margin-bottom: 32px;
+}
 .centrado{
     text-align: center;
 }
@@ -340,6 +380,8 @@ header{
     margin-bottom: 32px;
     margin-left: 32px;
 }
+
+
 
 /*Responsive*/
 @media only screen and (max-width: 900px)  {
@@ -380,4 +422,22 @@ header{
         font-size: 21px;
     }
    
+}
+
+
+
+/*Animaciones*/
+@keyframes toast{
+    0%{
+        opacity: 0;
+    }
+    20%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
 }

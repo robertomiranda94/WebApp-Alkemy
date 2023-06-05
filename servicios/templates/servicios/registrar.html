@@ -5,35 +5,30 @@
 
 
 {% block contenido_principal %}
-<h1>Nuevo Servicio</h1>
-    
-    <div>
+<div class="contenido">
 
-        <form method="post">
+<h1 class="titulo">Registrar Servicio</h1>
+        <form method="post" class="formulario">
             {% csrf_token %}
 
-            <div>
-              <label>Nombre:</label>
-              <input type="text" name="nombre" maxlength="20">
-
-              <div>
-                <label>Descripci&oacute;n:</label>
-                <textarea rows="6" cols="70" name="descripcion"></textarea>
+            <div class="contenedor-campos">
+              <div class="campo-formulario">
+                <label>Nombre:</label>
+                <input type="text" name="nombre" maxlength="20">
               </div>
-              
+              <div class="campo-formulario">
+                <label>Descripci&oacute;n:</label>
+                <textarea rows="6" cols="12" name="descripcion"></textarea>
+              </div>
+              <div class="campo-formulario">
               <label>Precio:</label>
               <input type="number" step="any" name="precio">
-
-              <div>
-                <input type="submit"value="Guardar Registro">
               </div>
+                <input class="boton" type="submit" value="Guardar Registro">
+                <a class="volver-link" href="{%url 'listar_servicios'%}">Volver al listado</a>
             </div>
-
         </form>
           
-    </div>
+  </div>
 
-    <div>
-      <a href="{%url 'listar_servicios'%}">Volver al listado</a>
-    </div>
 {% endblock %}
