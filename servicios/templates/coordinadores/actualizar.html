@@ -2,32 +2,43 @@
 
 {% block titulo %} Actualizar Coordinador {% endblock %}
 
+
+
 {% block contenido_principal %}
-<h3 class="pb-3 d-flex justify-content-center fw-bold text-body-tertiary">Actualizar Coordinador</h3>
-      <div class="d-flex justify-content-center p-5 bg-warning bg-opacity-75 rounded-5">
+{%if creado%}
+    <div class="toast-exito">Actualizado con exito</div>
+{%endif%}
+{%if fallo%}
+    <div class="toast-fallo">Ocurrió un error al tratar de actualizar el registro</div>
+{%endif%}
+<div class="contenido">
+  <h1 class="titulo">Actualizar Coordinador</h1>
+  <form method="post" class="formulario">
+    {% csrf_token %}
+    <div class="contenedor-campos">
+      <div class="campo-formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="{{coordinador.nombre}}" required>
+      </div>
+      <div class="campo-formulario">
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" value="{{coordinador.apellido}}" required>
+      </div>
+      <div class="campo-formulario">
+        <label for="numero_documento">N° Documento:</label>
+        <input type="number" name="numero_documento" value="{{coordinador.numero_documento}}" required>
+      </div>
+      <div class="campo-formulario">
+        <label for="fecha_alta">Fecha de alta:</label>
+        <input type="date" name="fecha_alta" value="{{coordinador.fecha_alta|date:'Y-m-d'}}" required>
+      </div>
 
-        <form method="post">
-            {% csrf_token %}
+      <input class="boton" type="submit" value="Actualizar">
 
-            <div class="form-group">
-              <label class="fw-semibold">Nombre:</label>
-              <input type="text" name="nombre" maxlength="20" class="mb-3 form-control" value="{{coordinador.nombre}}">
-
-              <label class="fw-semibold">Apellido:</label>
-              <input type="text" name="apellido" maxlength="20" class="mb-3 form-control" value="{{coordinador.apellido}}">
-
-              <label class="fw-semibold">DNI:</label>
-              <input type="number" maxlength="10" name="numero_documento" class="mb-3 form-control" value="{{coordinador.numero_documento}}">
-
-              <label class="fw-semibold">Fecha de alta:</label>
-              <input type="date" name="fecha_alta" class="mb-3 form-control" value="{{coordinador.fecha_alta}}">
-              </div>
-
-              <div class="d-flex justify-content-center pt-5">
-                <input type="submit" class="btn btn-primary bg-gradient fw-bold" value="Actualizar">
-              </div>
-            </div>
-
-          </form>
+      <a href="{% url 'listar_coordinadores' %}" class="volver-link">
+          Volver al listado
+      </a>
     </div>
+  </form>
+</div>
 {% endblock %}

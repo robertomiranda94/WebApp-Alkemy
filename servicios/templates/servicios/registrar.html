@@ -14,15 +14,15 @@
             <div class="contenedor-campos">
               <div class="campo-formulario">
                 <label>Nombre:</label>
-                <input type="text" name="nombre" maxlength="20">
+                <input type="text" name="nombre" maxlength="20" placeholder="Ingrese nombre" required>
               </div>
               <div class="campo-formulario">
                 <label>Descripci&oacute;n:</label>
-                <textarea rows="6" cols="12" name="descripcion"></textarea>
+                <textarea rows="6" cols="12" name="descripcion" placeholder="Ingrese descripción" required></textarea>
               </div>
               <div class="campo-formulario">
               <label>Precio:</label>
-              <input type="number" step="any" name="precio">
+              <input type="number" step="any" name="precio" placeholder="Ingrese precio" required>
               </div>
                 <input class="boton" type="submit" value="Guardar Registro">
                 <a class="volver-link" href="{%url 'listar_servicios'%}">Volver al listado</a>

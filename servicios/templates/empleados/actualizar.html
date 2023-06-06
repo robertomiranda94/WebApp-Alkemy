@@ -5,26 +5,36 @@
 
 
 {% block contenido_principal %}
-<div class="container">
-      <h1 class="text-center fw-bold mb-3">Actualizar empleado</h1>
-      <div class="d-flex justify-content-center">
-
-        <form method="post" action="{% url 'actualizar_empleado' empleado.id %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control border border-dark border border-1" name="nombre" value="{{ empleado.nombre }}">
-          </div>
-          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido:</label>
-            <input type="text" class="form-control border border-dark border border-1" name="apellido" value="{{ empleado.apellido }}">
-          </div>
-          <div class="mb-3">
-            <label for="numero_legajo" class="form-label">Número de legajo:</label>
-            <input type="text" class="form-control border border-dark border border-1" name="numero_legajo" value="{{ empleado.numero_legajo }}">
-          </div>
-          <button type="submit" class="btn btn-primary">Actualizar</button>
-        </form>
+{%if creado%}
+    <div class="toast-exito">Actualizado con exito</div>
+{%endif%}
+{%if fallo%}
+    <div class="toast-fallo">Ocurrió un error al tratar de actualizar el registro</div>
+{%endif%}
+<div class="contenido">
+  <h1 class="titulo">Actualizar Empleado</h1>
+  <form method="post" class="formulario">
+    {% csrf_token %}
+    <div class="contenedor-campos">
+      <div class="campo-formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="{{empleado.nombre}}" required>
       </div>
+      <div class="campo-formulario">
+        <label for="apellido">Apellido:</label>
+        <input type="text" name="apellido" value="{{empleado.apellido}}" required>
+      </div>
+      <div class="campo-formulario">
+        <label for="numero_legajo">N° Legajo:</label>
+        <input type="number" name="numero_legajo" value="{{empleado.numero_legajo}}" required>
+      </div>
+
+      <input class="boton" type="submit" value="Actualizar">
+
+      <a href="{% url 'listar_empleados' %}" class="volver-link">
+          Volver al listado
+      </a>
+    </div>
+  </form>
 </div>
 {% endblock %}
