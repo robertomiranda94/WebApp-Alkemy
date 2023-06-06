@@ -5,26 +5,32 @@
 
 
 {% block contenido_principal %}
-<div class="container">
-      <h1 class="text-center fw-bold mb-3">Actualizar empleado</h1>
-      <div class="d-flex justify-content-center">
-
-        <form method="post" action="{% url 'actualizar_empleado' empleado.id %}">
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre:</label>
-            <input type="text" class="form-control border border-dark border border-1" name="nombre" value="{{ empleado.nombre }}">
-          </div>
-          <div class="mb-3">
-            <label for="apellido" class="form-label">Apellido:</label>
-            <input type="text" class="form-control border border-dark border border-1" name="apellido" value="{{ empleado.apellido }}">
-          </div>
-          <div class="mb-3">
-            <label for="numero_legajo" class="form-label">Número de legajo:</label>
-            <input type="text" class="form-control border border-dark border border-1" name="numero_legajo" value="{{ empleado.numero_legajo }}">
-          </div>
-          <button type="submit" class="btn btn-primary">Actualizar</button>
-        </form>
-      </div>
+<div class="contenido">
+  <h1 class="titulo">Actualizar Empleado</h1>
 </div>
+      <div class="d-flex justify-content-center p-5 bg-warning bg-opacity-75 rounded-5">
+        <form method="post" class="formulario">
+            {% csrf_token %}
+
+            <div class="contenedor-campos">
+              <div class="campo-formulario">
+              <label class="fw-semibold">Nombre:</label>
+              <input type="text" name="nombre" maxlength="20" class="mb-3 form-control" value="{{empleado.nombre}}">
+              </div>
+              <div class="campo-formulario">
+              <label class="fw-semibold">Apellido:</label>
+              <input type="text" name="apellido" maxlength="20" class="mb-3 form-control" value="{{empleado.apellido}}">
+              </div>
+              <div class="campo-formulario">
+              <label class="fw-semibold">DNI:</label>
+              <input type="number" maxlength="10" name="numero_documento" class="mb-3 form-control" value="{{empleado.numero_legajo}}">
+              </div>
+              <input type="submit" class="boton" value="Actualizar">
+              <a href="{% url 'listar_empleados' %}" class="volver-link">
+                Volver al listado
+              </a>
+            </div>
+
+          </form>
+    </div>
 {% endblock %}
