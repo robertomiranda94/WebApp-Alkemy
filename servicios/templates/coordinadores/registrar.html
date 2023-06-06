@@ -3,25 +3,35 @@
 {% block titulo %} Nuevo Coordinador {% endblock %}
 
 {% block contenido_principal %}
-<form method="post">
+<div class="contenido">
+    <h1 class="titulo">Registrar Coordinador</h1>
+    <form method="post" class="formulario">
         {% csrf_token %}
+        <div class="contenedor-campos">
+            <div class="campo-formulario">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese nombre" required>
+            </div>
+            <div class="campo-formulario">
+                <label>Apellido:</label>
+                <input type="text" name="apellido" placeholder="Ingrese apellido">
+            </div>
+            <div class="campo-formulario">
+                <label>N° DNI:</label>
+                <input type="number" name="numero_documento" placeholder="xxxxxxxx" required>
+            </div>
+            <div class="campo-formulario">
+                <label>Fecha de alta:</label>
+                <input type="date" name="fecha_alta" required>
+            </div>
+            
+            <input class="boton" type="submit" value="Guardar registro">
 
-        Nombre: <input type="text" name="nombre">
-        <br><br>
-        Apellido: <input type="text" name="apellido">
-        <br><br>
-        N° Documento: <input type="number" name="numero_documento">
-        <br><br>
-        Fecha De Alta: <input type="date" name="fecha_alta">
-        <br><br>
-
-        <input type="submit" value="Guardar registro">
-
+            <a href="{% url 'listar_coordinadores' %}" class="volver-link">
+                Volver al listado
+            </a>
+        </div>
     </form>
 
-    <br><br>
-
-    <a href="{% url 'listar_coordinadores' %}">
-        Ir al Listado
-    </a>
+</div>
 {% endblock %}
