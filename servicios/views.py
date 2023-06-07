@@ -438,7 +438,7 @@ def activar_servicio(request, id_servicio):
 
 def desactivar_servicio(request,id_servicio):
     """
-    View para desactivar un registro de un cliente.
+    View para desactivar un registro de un servicio.
 
     Parametro:
     id_servicio (int): id del registro
