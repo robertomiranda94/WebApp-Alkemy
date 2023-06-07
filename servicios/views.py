@@ -106,7 +106,6 @@ def activar_empleado(request, id):
         return HttpResponse("El id no coincide con ningun objeto")
     
 
-
 def desactivar_empleado(request, id):
     """
     View para desactivar un registro de un empleado.
@@ -373,6 +372,13 @@ def actualizar_cliente (request, id_cliente):
 
 # FUNCIONES PARA SERVICIO
 def registrar_servicio(request):
+    """
+    View para procesar una solicitud POST para registrar un servicio en el sistema.
+    
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de guardar el registro
+    render: renderiza el template con los datos obtenidos
+    """
     if request.POST:
         try:
             nombre_servicio = request.POST['nombre']
@@ -390,6 +396,12 @@ def registrar_servicio(request):
 
 
 def listar_servicios(request):
+    """
+    View para obtiener la lista de todos los servicios.
+
+    Retorno:
+    render: renderiza el template con la lista obtenida
+    """
     servicios = Servicio.objects.all()
     context = {
         'servicios': servicios
@@ -402,6 +414,16 @@ def listar_servicios(request):
 
 
 def activar_servicio(request, id_servicio):
+    """
+    View para activar un registro de un servicio.
+
+    Parametro:
+    id_servicio (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de activar el registro
+    redirect: Redirecciona al template del listado de servicios
+    """
     try:
         servicio = Servicio.objects.get(id=id_servicio)
         if not (servicio.activo):
@@ -415,6 +437,16 @@ def activar_servicio(request, id_servicio):
 
 
 def desactivar_servicio(request,id_servicio):
+    """
+    View para desactivar un registro de un cliente.
+
+    Parametro:
+    id_servicio (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de desactivar el registro
+    redirect: Redirecciona al template del listado de servicios.
+    """
     try:
         servicio = Servicio.objects.get(id=id_servicio)
         if (servicio.activo):
@@ -428,6 +460,16 @@ def desactivar_servicio(request,id_servicio):
 
 
 def actualizar_servicio(request, id_servicio):
+    """
+    View para activar un registro de un servicio.
+
+    Parametro:
+    id_servicio (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
+    render: renderiza el template del registro con los cambios
+    """
     try:
         servicio = Servicio.objects.get(id=id_servicio)
         context = {

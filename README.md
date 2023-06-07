@@ -63,3 +63,35 @@ El módulo **Empleados** proporciona las siguientes funcionalidades:
     - Método: GET, POST
     - Descripción: Esta función permite actualizar los datos de un empleado específico en el sistema, identificado por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen el nombre, el apellido y el número de legajo del empleado.
 ![](/static/img/actualizar-empleado.png)
+
+## Funcionalidades del módulo servicio
+
+
+El módulo **Servicios** proporciona las siguientes funcionalidades:
+
+- ##### Registro de un nuevo Servicio
+    - URL: /servicios/nuevo
+    - Método: POST
+    - Descripción: Permite registrar un nuevo servicio en el sistema.
+    ![](/static/img/registrar-servicio.png)
+- ##### Listado de servicios:
+    - URL: `/servicios/listado`
+    - Método: GET
+    - Descripción: Esta función muestra una lista de todos los servicios registrados en el sistema.
+![](/static/img/lista-servicios.png)
+
+- ##### Activar servicio:
+    - URL: `/servicios/activar/id_servicio`
+    - Método: GET
+    - Descripción: Activa un servicio específico en el sistema, identificado por su ID.
+
+- ##### Desactivar servicio:
+    - URL: `/servicios/desactivar/id_servicio`
+    - Método: GET
+    - Descripción:Desactiva un servicio específico en el sistema, identificado por su ID.
+
+- ##### Actualizar servicio:
+    - URL: `/servicios/actualizar/id_servicio`
+    - Método: GET, POST
+    - Descripción: Permite actualizar los datos de un servicio específico en el sistema, identificado por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen el nombre, la descripcion y el precio del servicio.
+![](/static/img/actualizar-servicio.png)
