@@ -215,14 +215,20 @@ def actualizar_coordinador(request,id_coordinador):
 
 # FUNCIONES PARA CLIENTE
 def registrar_cliente(request):
+    """
+    View para procesar una solicitud POST para registrar un cliente en el sistema.
+    
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de guardar el registro
+    render: renderiza el template con los datos obtenidos
+    """
     if request.POST:
         try:
             nombre_cliente = request.POST['nombre']
             apellido_cliente = request.POST['apellido']
             Cliente.objects.create(
                 nombre = nombre_cliente,
-                apellido = apellido_cliente,
-                activo = True
+                apellido = apellido_cliente
             )
         except:
             return HttpResponse("Ocurrió un error al crear el usuario")
@@ -233,6 +239,12 @@ def registrar_cliente(request):
 
 
 def listar_clientes(request):
+    """
+    View para obtiener la lista de todos los clientes.
+
+    Retorno:
+    render: renderiza el template con la lista obtenida
+    """
     clientes = Cliente.objects.all()
     context = {
         'clientes': clientes
@@ -245,6 +257,16 @@ def listar_clientes(request):
 
 
 def activar_cliente(request,id_cliente):
+    """
+    View para activar un registro de un cliente.
+
+    Parametro:
+    id_cliente (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de activar el registro
+    redirect: Redirecciona al template del listado de clientes
+    """
     try:
         cliente = Cliente.objects.get(id=id_cliente)
         cliente.activo = True
@@ -256,6 +278,16 @@ def activar_cliente(request,id_cliente):
 
 
 def desactivar_cliente(request, id_cliente):
+    """
+    View para desactivar un registro de un cliente.
+
+    Parametro:
+    id_cliente (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de desactivar el registro
+    redirect: Redirecciona al template del listado de clientes
+    """
     try:
         cliente = Cliente.objects.get(id=id_cliente)
         cliente.activo = False
@@ -267,6 +299,16 @@ def desactivar_cliente(request, id_cliente):
 
 
 def actualizar_cliente (request, id_cliente):
+    """
+    View para activar un registro de un cliente.
+
+    Parametro:
+    id_cliente (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
+    render: renderiza el template del registro con los cambios
+    """
     try:
         cliente = Cliente.objects.get(id=id_cliente)
         context = {
