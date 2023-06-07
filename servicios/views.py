@@ -28,6 +28,12 @@ def index(request):
 
 # FUNCIONES PARA EMPLEADO
 def registrar_empleado(request):
+    """
+    View para procesar una solicitud POST para registrar un empleado en el sistema.
+    
+    Retorno:
+    render: renderiza el template con los datos obtenidos
+    """
     if request.POST:
         try:
             nombre_empleado = request.POST['nombre']
@@ -36,8 +42,7 @@ def registrar_empleado(request):
             Empleado.objects.create(
                 nombre = nombre_empleado,
                 apellido = apellido_empleado,
-                numero_legajo = numero_legajo,
-                activo = True
+                numero_legajo = numero_legajo
             )
             context={
                 'creado':True
@@ -63,6 +68,12 @@ def registrar_empleado(request):
 
 
 def listar_empleados(request):
+    """
+    View para obtiener la lista de todos los empleados.
+
+    Retorno:
+    render: renderiza el template con la lista obtenida
+    """
     empleados = Empleado.objects.all()
     context = {
         'empleados': empleados
@@ -75,19 +86,38 @@ def listar_empleados(request):
 
 
 def activar_empleado(request, id):
+    """
+    View para activar un registro de un empleado.
+
+    Parametro:
+    id (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de activar el registro
+    redirect: Redirecciona al template del listado de empleados
+    """
     try:
         empleado = Empleado.objects.get(id=id)
         if not (empleado.activo):
             empleado.activo = True
-            empleado.save()
+            empleado.save()            
             return redirect("listar_empleados")
-        else:
-            return HttpResponse("No es necesario activar el registro de empleado")             
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
+    
 
 
 def desactivar_empleado(request, id):
+    """
+    View para desactivar un registro de un empleado.
+
+    Parametro:
+    id (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de desactivar el registro
+    redirect: Redirecciona al template del listado de empleados
+    """
     try:
         empleado = get_object_or_404(Empleado, id=id)
         empleado.activo = False
@@ -98,6 +128,16 @@ def desactivar_empleado(request, id):
 
 
 def actualizar_empleado(request, id_empleado):
+    """
+    View para activar un registro de un empleado.
+
+    Parametro:
+    id_empleado (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
+    render: renderiza el template del registro con los cambios
+    """
     try:
         empleado = Empleado.objects.get(id=id_empleado)
 
