@@ -3,12 +3,6 @@
 {% block titulo %} Nuevo Coordinador {% endblock %}
 
 {% block contenido_principal %}
-{%if creado%}
-    <div class="toast-exito">Creado con exito</div>
-{%endif%}
-{%if fallo%}
-    <div class="toast-fallo">Ocurrió un error al crear el registro</div>
-{%endif%}
 <div class="contenido">
     <h1 class="titulo">Registrar Coordinador</h1>
     <form method="post" class="formulario">
@@ -23,12 +17,12 @@
                 <input type="text" name="apellido" placeholder="Ingrese apellido">
             </div>
             <div class="campo-formulario">
-                <label>N° Documento:</label>
+                <label>N° DNI:</label>
                 <input type="number" name="numero_documento" placeholder="xxxxxxxx" required>
             </div>
             <div class="campo-formulario">
                 <label>Fecha de alta:</label>
-                <input type="date" name="fecha_alta" placeholder="xxxxxxxx" required>
+                <input type="date" name="fecha_alta" required>
             </div>
             
             <input class="boton" type="submit" value="Guardar registro">
@@ -40,5 +34,4 @@
     </form>
 
 </div>
-
 {% endblock %}
