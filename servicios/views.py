@@ -1,11 +1,10 @@
-from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
+
 from .models import Empleado,Coordinador,Cliente, ReservaServicio,Servicio
 
 
-
-# Create your views here.
 
 def index(request):
     lista_reservas = ReservaServicio.objects.all().order_by('-id')
@@ -26,6 +25,8 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+
+# FUNCIONES PARA EMPLEADO
 def registrar_empleado(request):
     if request.POST:
         try:
@@ -60,6 +61,7 @@ def registrar_empleado(request):
         "empleados/registrar.html"
     )
 
+
 def listar_empleados(request):
     empleados = Empleado.objects.all()
     context = {
@@ -71,7 +73,8 @@ def listar_empleados(request):
         context
     )
 
-def activar_registro_empleado(request, id):
+
+def activar_empleado(request, id):
     try:
         empleado = Empleado.objects.get(id=id)
         if not (empleado.activo):
@@ -82,6 +85,17 @@ def activar_registro_empleado(request, id):
             return HttpResponse("No es necesario activar el registro de empleado")             
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
+
+
+def desactivar_empleado(request, id):
+    try:
+        empleado = get_object_or_404(Empleado, id=id)
+        empleado.activo = False
+        empleado.save()
+        return redirect("listar_empleados")
+    except:
+        return HttpResponse(f"No se ha podido activar el cliente {empleado.nombre} {empleado.apellido}")
+
 
 def actualizar_empleado(request, id_empleado):
     try:
@@ -111,23 +125,29 @@ def actualizar_empleado(request, id_empleado):
         context
     )
 
-def desactivar_empleado(request, id):
-    try:
-        empleado = get_object_or_404(Empleado, id=id)
-        empleado.activo = False
-        empleado.save()
-        return redirect("listar_empleados")
-    except:
-        return HttpResponse(f"No se ha podido activar el cliente {empleado.nombre} {empleado.apellido}")
-    
 
-def eliminar_empleado(request,id_empleado):
-    try:
-        empleado = Empleado.objects.get(id=id_empleado)
-        empleado.delete()
-    except:
-        return HttpResponse("No se ha encontrado el empleado a eliminar")
-    return redirect("listar_empleados")
+# FUNCIONES PARA COORDINADOR
+def registrar_coordinador(request):
+    if request.method == 'POST':
+        try:
+            nombre_coordinador = request.POST["nombre"]
+            apellido_coordinador = request.POST["apellido"]
+            numero_documento_coordinador = request.POST["numero_documento"]
+            fecha_alta_coordinador = request.POST["fecha_alta"]
+
+            Coordinador.objects.create(
+                nombre = nombre_coordinador,
+                apellido = apellido_coordinador,
+                numero_documento = numero_documento_coordinador,
+                fecha_alta = fecha_alta_coordinador
+            )
+        except:
+            return HttpResponse("Ocurrio un error al crear el coordinador")
+    return render(
+        request,
+        "coordinadores/registrar.html"
+    )
+
 
 def listar_coordinadores(request):
     coordinadores = Coordinador.objects.all()
@@ -139,6 +159,33 @@ def listar_coordinadores(request):
         "coordinadores/listado.html",
         context
     )
+
+
+def activar_coordinador(request, id_coordinador):
+    try:
+        coordinador = Coordinador.objects.get(id=id_coordinador)
+        if not (coordinador.activo):
+            coordinador.activo = True
+            coordinador.save()
+            return HttpResponse("El registro del coordinador ingresado fué activado")
+        else:
+            return HttpResponse("Registro de coordinador ya activado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto")
+
+
+def desactivar_coordinador(request, id_coordinador):
+    try:
+        coordinador = Coordinador.objects.get(id=id_coordinador)
+        if (coordinador.activo):
+            coordinador.activo = False
+            coordinador.save()
+            return HttpResponse("El registro del coordinador ingresado fué desactivado")
+        else:
+            return HttpResponse("Registro de coordinador ya desactivado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto")
+
 
 def actualizar_coordinador(request,id_coordinador):
     try:
@@ -165,6 +212,8 @@ def actualizar_coordinador(request,id_coordinador):
         context
     )
 
+
+# FUNCIONES PARA CLIENTE
 def registrar_cliente(request):
     if request.POST:
         try:
@@ -182,6 +231,19 @@ def registrar_cliente(request):
         "clientes/registrar.html"
     )
 
+
+def listar_clientes(request):
+    clientes = Cliente.objects.all()
+    context = {
+        'clientes': clientes
+    }
+    return render(
+        request,
+        "clientes/listado.html",
+        context
+    )
+
+
 def activar_cliente(request,id_cliente):
     try:
         cliente = Cliente.objects.get(id=id_cliente)
@@ -191,6 +253,7 @@ def activar_cliente(request,id_cliente):
         return HttpResponse(f"No se ha podido activar el cliente {cliente.nombre} {cliente.apellido}")
     
     return redirect("listar_clientes")
+
 
 def desactivar_cliente(request, id_cliente):
     try:
@@ -202,58 +265,6 @@ def desactivar_cliente(request, id_cliente):
     
     return redirect("listar_clientes")
 
-def eliminar_cliente(request,id_cliente):
-    try:
-        cliente = Cliente.objects.get(id=id_cliente)
-        cliente.delete()
-    except:
-        return HttpResponse("No se ha encontrado el cliente a eliminar")
-    return redirect("listar_clientes")
-
-def registrar_coordinador(request):
-    if request.method == 'POST':
-        try:
-            nombre_coordinador = request.POST["nombre"]
-            apellido_coordinador = request.POST["apellido"]
-            numero_documento_coordinador = request.POST["numero_documento"]
-            fecha_alta_coordinador = request.POST["fecha_alta"]
-
-            Coordinador.objects.create(
-                nombre = nombre_coordinador,
-                apellido = apellido_coordinador,
-                numero_documento = numero_documento_coordinador,
-                fecha_alta = fecha_alta_coordinador
-            )
-        except:
-            return HttpResponse("Ocurrio un error al crear el coordinador")
-    return render(
-        request,
-        "coordinadores/registrar.html"
-    )
-
-def activar_coordinador(request, id_coordinador):
-    try:
-        coordinador = Coordinador.objects.get(id=id_coordinador)
-        if not (coordinador.activo):
-            coordinador.activo = True
-            coordinador.save()
-            return HttpResponse("El registro del coordinador ingresado fué activado")
-        else:
-            return HttpResponse("Registro de coordinador ya activado")
-    except ObjectDoesNotExist:
-        return HttpResponse("El id no coincide con ningun objeto")
-
-def desactivar_coordinador(request, id_coordinador):
-    try:
-        coordinador = Coordinador.objects.get(id=id_coordinador)
-        if (coordinador.activo):
-            coordinador.activo = False
-            coordinador.save()
-            return HttpResponse("El registro del coordinador ingresado fué desactivado")
-        else:
-            return HttpResponse("Registro de coordinador ya desactivado")
-    except ObjectDoesNotExist:
-        return HttpResponse("El id no coincide con ningun objeto")
 
 def actualizar_cliente (request, id_cliente):
     try:
@@ -277,33 +288,36 @@ def actualizar_cliente (request, id_cliente):
         context
     )
 
-def listar_clientes(request):
-    clientes = Cliente.objects.all()
+
+# FUNCIONES PARA SERVICIO
+def registrar_servicio(request):
+    if request.POST:
+        try:
+            nombre_servicio = request.POST['nombre']
+            descripcion_servicio = request.POST['descripcion']
+            precio_servicio= request.POST['precio']
+            Servicio.objects.create(
+                nombre = nombre_servicio,
+                descripcion = descripcion_servicio,
+                precio = precio_servicio,
+                activo = True,
+            )
+        except:
+            return HttpResponse("Ocurrio un problema al registrar el nuevo servicio")
+    return render(request, 'servicios/registrar.html')
+
+
+def listar_servicios(request):
+    servicios = Servicio.objects.all()
     context = {
-        'clientes': clientes
+        'servicios': servicios
     }
     return render(
         request,
-        "clientes/listado.html",
+        "servicios/listado.html",
         context
     )
 
-def eliminar_coordinador(request,id_coordinador):
-    try:
-        coordinador = Coordinador.objects.get(id=id_coordinador)
-        coordinador.delete()
-    except:
-        return HttpResponse("No se ha encontrado el coordinador a eliminar")
-    return redirect("listar_coordinadores")
-
-def eliminar_reserva(request, id_reserva):
-    try:
-        reserva = ReservaServicio.objects.get(id=id_reserva)
-        reserva.delete()
-    except:
-        return HttpResponse("No se ha encontrado la reserva a eliminar.")
-
-    return HttpResponse("Se ha eliminado la reserva correctamente.")
 
 def activar_servicio(request, id_servicio):
     try:
@@ -316,6 +330,20 @@ def activar_servicio(request, id_servicio):
             return HttpResponse("Registro de servicio ya activado")
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
+
+
+def desactivar_servicio(request,id_servicio):
+    try:
+        servicio = Servicio.objects.get(id=id_servicio)
+        if (servicio.activo):
+            servicio.activo = False
+            servicio.save()
+            return redirect('listar_servicios')
+        else:
+            return HttpResponse("El registro del servicio ya está desactivado")
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun servicio")
+
 
 def actualizar_servicio(request, id_servicio):
     try:
@@ -340,46 +368,9 @@ def actualizar_servicio(request, id_servicio):
         "servicios/actualizar.html",
         context
     )
-def registrar_servicio(request):
-    if request.POST:
-        try:
-            nombre_servicio = request.POST['nombre']
-            descripcion_servicio = request.POST['descripcion']
-            precio_servicio= request.POST['precio']
-            Servicio.objects.create(
-                nombre = nombre_servicio,
-                descripcion = descripcion_servicio,
-                precio = precio_servicio,
-                activo = True,
-            )
-        except:
-            return HttpResponse("Ocurrio un problema al registrar el nuevo servicio")
-    return render(request, 'servicios/registrar.html')
-
-def desactivar_servicio(request,id_servicio):
-    try:
-        servicio = Servicio.objects.get(id=id_servicio)
-        if (servicio.activo):
-            servicio.activo = False
-            servicio.save()
-            return redirect('listar_servicios')
-        else:
-            return HttpResponse("El registro del servicio ya está desactivado")
-    except ObjectDoesNotExist:
-        return HttpResponse("El id no coincide con ningun servicio")
-
-def listar_servicios(request):
-    servicios = Servicio.objects.all()
-    context = {
-        'servicios': servicios
-    }
-    return render(
-        request,
-        "servicios/listado.html",
-        context
-    )
 
 
+# FUNCIONES PARA RESERVA
 def registrar_reservas(request):
     if request.method == 'POST':
         try:
@@ -464,3 +455,17 @@ def actualizar_reserva_de_servicio(request, id_reserva):
     }
 
     return render(request, 'reservas/actualizar.html', context)
+
+
+def eliminar_reserva(request, id_reserva):
+    try:
+        reserva = ReservaServicio.objects.get(id=id_reserva)
+        reserva.delete()
+    except:
+        return HttpResponse("No se ha encontrado la reserva a eliminar.")
+
+    return HttpResponse("Se ha eliminado la reserva correctamente.")
+
+
+
+

@@ -5,29 +5,36 @@
 
 
 {% block contenido_principal %}
-<div>
+{%if creado%}
+    <div class="toast-exito">Actualizado con exito</div>
+{%endif%}
+{%if fallo%}
+    <div class="toast-fallo">Ocurrió un error al tratar de actualizar el registro</div>
+{%endif%}
+<div class="contenido">
+  <h1 class="titulo">Actualizar Servicio</h1>
+  <form method="post" class="formulario">
+    {% csrf_token %}
+    <div class="contenedor-campos">
+      <div class="campo-formulario">
+        <label for="nombre">Nombre:</label>
+        <input type="text" name="nombre" value="{{servicio.nombre}}" required>
+      </div>
+      <div class="campo-formulario">
+        <label for="descripcion">Descripción:</label>
+        <input type="text" name="descripcion" value="{{servicio.descripcion}}" required>
+      </div>
+      <div class="campo-formulario">
+        <label for="precio">N° Legajo:</label>
+        <input type="number" name="precio" value="{{servicio.precio}}" required>
+      </div>
 
-    <form method="post" action="{% url 'actualizar_servicio' servicio.id %}">
-        {% csrf_token %}
+      <input class="boton" type="submit" value="Actualizar">
 
-        <div>
-          <label>Nombre:</label>
-          <input type="text" name="nombre" value="{{servicio.nombre}}">
-
-          <div>
-            <label>Descripci&oacute;n:</label>
-            <textarea rows="6" cols="70" name="descripcion">{{servicio.descripcion}}</textarea>
-          </div>
-          
-          <label>Precio:</label>
-          <input name="precio" type="number" step="any" value="{{servicio.precio}}" >
-
-          <div>
-            <input type="submit" value="Actualizar">
-          </div>
-        </div>
-
-    </form>
-    <a href="{%url 'listar_servicios'%}">Volver al listado</a>
+      <a href="{% url 'listar_servicios' %}" class="volver-link">
+          Volver al listado
+      </a>
+    </div>
+  </form>
 </div>
 {% endblock %}
