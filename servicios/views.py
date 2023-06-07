@@ -496,6 +496,13 @@ def actualizar_servicio(request, id_servicio):
 
 # FUNCIONES PARA RESERVA
 def registrar_reservas(request):
+    """
+    View para procesar una solicitud POST para registrar una reserva en el sistema.
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de guardar el registro
+    render: renderiza el template con los datos obtenidos
+    """
     if request.method == 'POST':
         try:
             fecha_reserva = request.POST['fecha_reserva']
@@ -535,6 +542,11 @@ def registrar_reservas(request):
 
 
 def listar_reservas(request):
+    '''
+    View para obtener la lista de todas las reservas.
+
+    render: renderiza el template con la lista obtenida
+    '''
     reservas = ReservaServicio.objects.all()
     context = {
         'reservas':reservas
@@ -547,6 +559,16 @@ def listar_reservas(request):
 
 
 def actualizar_reserva_de_servicio(request, id_reserva):
+    '''
+    View para actualizar una reserva de servicio.
+
+    Parametro:
+    id_reserva (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
+
+    '''
     reserva = ReservaServicio.objects.get(id = id_reserva)
             
     if request.method == 'POST':
@@ -582,6 +604,16 @@ def actualizar_reserva_de_servicio(request, id_reserva):
 
 
 def eliminar_reserva(request, id_reserva):
+    '''
+    View para eliminar una reserva de servicio.
+
+    Parametro:
+    id_reserva (int): id del registro
+
+    Retorno:
+    HttpResponse: mensaje de que ocurrio un problema al tratar de eliminar el registro
+    
+    '''
     try:
         reserva = ReservaServicio.objects.get(id=id_reserva)
         reserva.delete()

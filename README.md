@@ -95,3 +95,35 @@ El módulo **Servicios** proporciona las siguientes funcionalidades:
     - Método: GET, POST
     - Descripción: Permite actualizar los datos de un servicio específico en el sistema, identificado por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen el nombre, la descripcion y el precio del servicio.
 ![](/static/img/actualizar-servicio.png)
+
+## Funcionalidades del módulo Reserva de Servicios
+
+El módulo **Reserva de Servicios** proporciona las siguientes funcionalidades:
+
+- ##### Registro de una nueva reserva de servicio:
+    - URL: `/reservas/nuevo`
+    - Método: POST
+    - Descripción: Esta función permite registrar una nueva reserva de servicio en el sistema. Se espera que se envíen los datos de la reserva (fecha, hora, cliente, empleado y servicio) en una solicitud POST.
+![](/static/img/registrar-reserva.png)
+
+- ##### Listado de reservas de servicios:
+    - URL: `/reservas/listado`
+    - Método: GET
+    - Descripción: Esta función muestra una lista de todas las reservas de servicios registradas en el sistema.
+![](/static/img/lista-reservas.png)
+
+- ##### Activar reserva de servicio:
+    - URL: `/reservas/activar/id_reserva`
+    - Método: GET
+    - Descripción: Esta función activa una reserva de servicio específica en el sistema, identificada por su ID.
+
+- ##### Desactivar reserva de servicio:
+    - URL: `/reservas/desactivar/id_reserva`
+    - Método: GET
+    - Descripción: Esta función desactiva una reserva de servicio específica en el sistema, identificada por su ID.
+
+- ##### Actualizar reserva de servicio:
+    - URL: `/reservas/modificar/id_reserva`
+    - Método: GET, POST
+    - Descripción: Esta función permite actualizar los datos de una reserva de servicio específica en el sistema, identificada por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen la fecha, el cliente, el responsable, el empleado, el servicio de la reserva y el precio.
+![](/static/img/actualizar-reserva.png)
