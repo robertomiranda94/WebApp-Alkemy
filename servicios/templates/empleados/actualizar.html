@@ -22,8 +22,8 @@
               <input type="text" name="apellido" maxlength="20" class="mb-3 form-control" value="{{empleado.apellido}}">
               </div>
               <div class="campo-formulario">
-              <label class="fw-semibold">DNI:</label>
-              <input type="number" maxlength="10" name="numero_documento" class="mb-3 form-control" value="{{empleado.numero_legajo}}">
+              <label class="fw-semibold">N° Legajo:</label>
+              <input type="number" maxlength="10" name="numero_legajo" class="mb-3 form-control" value="{{empleado.numero_legajo}}">
               </div>
               <input type="submit" class="boton" value="Actualizar">
               <a href="{% url 'listar_empleados' %}" class="volver-link">
