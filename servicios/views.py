@@ -167,6 +167,12 @@ def actualizar_empleado(request, id_empleado):
 
 # FUNCIONES PARA COORDINADOR
 def registrar_coordinador(request):
+    """
+    Registra un nuevo coordinador en el sistema.
+
+    :param request: La solicitud HTTP recibida.
+    :return: Renderiza el template con los datos obtenidos
+    """
     if request.method == 'POST':
         try:
             nombre_coordinador = request.POST["nombre"]
@@ -189,6 +195,12 @@ def registrar_coordinador(request):
 
 
 def listar_coordinadores(request):
+    """
+    Lista todos los coordinadores registrados en el sistema.
+
+    :param request: La solicitud HTTP recibida.
+    :return: Renderiza el template con la lista obtenida
+    """
     coordinadores = Coordinador.objects.all()
     context = {
         'coordinadores': coordinadores
@@ -201,6 +213,16 @@ def listar_coordinadores(request):
 
 
 def activar_coordinador(request, id_coordinador):
+    """
+    Activa el registro de un coordinador en el sistema.
+
+    :param request: La solicitud HTTP recibida.
+    :param id_coordinador: El ID del coordinador a activar.
+    :return: Si el coordinador con la id recibida existe en la BD se devuelve un HttpResponse
+    indicando que el registro del coordinador ya esta activado ó que el registro
+    del coordinador ingresado fue activado, dependiendo si el coordinador está o no activado.
+    Caso contrario se devuelve un HttpResponse indicando que el id no coincide con ningún objeto. 
+    """
     try:
         coordinador = Coordinador.objects.get(id=id_coordinador)
         if not (coordinador.activo):
@@ -214,6 +236,16 @@ def activar_coordinador(request, id_coordinador):
 
 
 def desactivar_coordinador(request, id_coordinador):
+    """
+    Desactiva el registro de un coordinador en el sistema.
+
+    :param request: La solicitud HTTP recibida.
+    :param id_coordinador: El ID del coordinador a desactivar.
+    :return: Si el coordinador con la id recibida existe en la BD se devuelve un HttpResponse
+    indicando que el registro del coordinador ya esta desactivado ó que el registro
+    del coordinador ingresado fue desactivado, dependiendo si el coordinador está o no activado.
+    Caso contrario se devuelve un HttpResponse indicando que el id no coincide con ningún objeto.
+    """
     try:
         coordinador = Coordinador.objects.get(id=id_coordinador)
         if (coordinador.activo):
@@ -221,12 +253,20 @@ def desactivar_coordinador(request, id_coordinador):
             coordinador.save()
             return HttpResponse("El registro del coordinador ingresado fué desactivado")
         else:
-            return HttpResponse("Registro de coordinador ya desactivado")
+            return HttpResponse("Registro de coordinador ya esta desactivado")
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto")
 
 
 def actualizar_coordinador(request,id_coordinador):
+    """
+    Actualiza los datos de un coordinador en el sistema.
+
+    :param request: La solicitud HTTP recibida.
+    :param id_coordinador: El ID del coordinador a actualizar.
+    :return: renderiza una plantilla para actualizar el coordinador si es que este existe,
+    caso contrario devuelve un HttpResponse indicando que el id no coincide con ningun coordinador.
+    """
     try:
         coordinador = Coordinador.objects.get(id=id_coordinador)
         context = {
@@ -242,8 +282,8 @@ def actualizar_coordinador(request,id_coordinador):
             coordinador.apellido = apellido_coordinador
             coordinador.numero_documento = numero_documento_coordinador
             coordinador.save()
-    except:
-        return HttpResponse("No se ha podido actualizar el registro del empleado") 
+    except ObjectDoesNotExist:
+        return HttpResponse("El id no coincide con ningun objeto") 
     
     return render(
         request,
