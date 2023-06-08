@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from servicios.models import Servicio 
+from servicios.models import Coordinador, Servicio
 
 
 # Create your views here.
@@ -14,7 +14,7 @@ def listar_servicios_json(request):
             "precio": servicio.precio,
         }
         servicios_data.append(servicio_data)
-    return JsonResponse(servicios_data, safe = False) #safe=False permite que se devuelva una lista en lugar de un diccionario.
+    return JsonResponse(servicios_data, safe=False) #safe=False permite que se devuelva una lista en lugar de un diccionario.
 
 
 def mostrar_servicio_json(request,id):
@@ -29,3 +29,9 @@ def mostrar_servicio_json(request,id):
         return JsonResponse(servicio_json)
     except Exception as error:
         return JsonResponse([],safe=False)
+
+
+def listar_coordinadores_json(request):
+    coordinadores = Coordinador.objects.all()
+    lista_coordinadores = list(coordinadores.values())
+    return JsonResponse(lista_coordinadores, safe=False)
