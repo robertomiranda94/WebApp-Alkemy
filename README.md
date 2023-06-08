@@ -64,6 +64,38 @@ El módulo **Empleados** proporciona las siguientes funcionalidades:
     - Descripción: Esta función permite actualizar los datos de un empleado específico en el sistema, identificado por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen el nombre, el apellido y el número de legajo del empleado.
 ![](/static/img/actualizar-empleado.png)
 
+## Funcionalidades del módulo Coordinadores
+
+El módulo **coordinadores** proporciona las siguientes funcionalidades:
+
+- ##### Registro de un nuevo coordinador:
+    - URL: `/coordinadores/nuevo`
+    - Método: POST
+    - Descripción: Esta función permite registrar un nuevo coordinador en el sistema. Se espera que se envíen los datos del coordinador (nombre, apellido, DNI y Fecha de alta) en una solicitud POST.
+![](/static/img/registrar-coordinador.PNG)
+
+- ##### Listado de coordinadores:
+    - URL: `/coordinadores/listado`
+    - Método: GET
+    - Descripción: Esta función muestra una lista de todos los coordinadores registrados en el sistema.
+![](/static/img/lista-coordinadores.PNG)
+
+- ##### Activar coordinador:
+    - URL: `/coordinadores/activar/id_coordinador`
+    - Método: GET
+    - Descripción: Esta función activa un coordinador específico en el sistema, identificado por su ID.
+
+- ##### Desactivar coordinador:
+    - URL: `/coordinadores/desactivar/id_coordinador`
+    - Método: GET
+    - Descripción: Esta función desactiva un coordinador específico en el sistema, identificado por su ID.
+
+- ##### Actualizar coordinador:
+    - URL: `/coordinadores/actualizar/id_empleado`
+    - Método: GET, POST
+    - Descripción: Esta función permite actualizar los datos de un coordinador específico en el sistema, identificado por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen el nombre, el apellido, DNI y la fecha de alta del coordinador.
+![](/static/img/actualizar-coordinador.PNG)
+
 ## Funcionalidades del módulo servicio
 
 
