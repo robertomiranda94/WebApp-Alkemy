@@ -237,7 +237,7 @@ def activar_coordinador(request, id_coordinador):
         if not (coordinador.activo):
             coordinador.activo = True
             coordinador.save()
-            return HttpResponse("El registro del coordinador ingresado fué activado")
+            return redirect("listar_coordinadores")
         else:
             return HttpResponse("Registro de coordinador ya activado")
     except ObjectDoesNotExist:
@@ -260,7 +260,7 @@ def desactivar_coordinador(request, id_coordinador):
         if (coordinador.activo):
             coordinador.activo = False
             coordinador.save()
-            return HttpResponse("El registro del coordinador ingresado fué desactivado")
+            return redirect("listar_coordinadores")
         else:
             return HttpResponse("Registro de coordinador ya esta desactivado")
     except ObjectDoesNotExist:
