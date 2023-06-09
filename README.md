@@ -1,5 +1,12 @@
 # Proyecto Integrador Alkemy
 
+## Instalación del proyecto
+Los pasos para poner en marcha el proyecto son los siguientes:
+- Paso 1: Entrar en la consola e ingresar este comando pip install -r requeriments.txt
+- Paso 2: Ejecutar el comando python manage.py migrate
+- Paso 3: Ejecutar el comando python manage.py runserver para correr el servidor
+- Paso 4: En cualquier navegador ingresar esta url: http://localhost:8000/ 
+
 ## Funcionalidades del módulo Clientes
 
 El módulo **Clientes** proporciona las siguientes funcionalidades:
