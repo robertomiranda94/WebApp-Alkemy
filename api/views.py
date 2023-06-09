@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from servicios.models import Coordinador, Empleado, Servicio
+from servicios.models import Coordinador, Empleado, Servicio, Cliente
 
 
 def listar_servicios_json(request):
@@ -80,3 +80,18 @@ def listar_empleados_json(request):
     empleados = Empleado.objects.all()
     lista_empleados = list(empleados.values())
     return JsonResponse(lista_empleados, safe=False)
+
+
+def listar_clientes_json(request):
+    """
+    Devuelve una lista de clientes en formato JSON.
+
+    Parametro:
+        request: La solicitud HTTP recibida por la vista.
+
+    Retorna:
+        JsonResponse: Un objeto JSON que contiene la lista de clientes.
+    """
+    clientes = Cliente.objects.all()
+    lista_clientes = list(clientes.values())
+    return JsonResponse(lista_clientes, safe = False)
