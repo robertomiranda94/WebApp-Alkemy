@@ -50,11 +50,7 @@ def registrar_empleado(request):
             context={
                 'creado':True
             }
-            return render(
-            request,
-            "empleados/registrar.html",
-            context
-            )
+            return redirect("listar_empleados")
         except:
             context={
                 'fallo':True
@@ -164,6 +160,7 @@ def actualizar_empleado(request, id_empleado):
             empleado.numero_legajo = legajo_empleado
 
             empleado.save()
+            return redirect("listar_empleados")
     except:
         return HttpResponse("No se ha podido actualizar el registro del empleado") 
     
@@ -195,6 +192,7 @@ def registrar_coordinador(request):
                 numero_documento = numero_documento_coordinador,
                 fecha_alta = fecha_alta_coordinador
             )
+            return redirect("listar_coordinadores")
         except:
             return HttpResponse("Ocurrio un error al crear el coordinador")
     return render(
@@ -291,6 +289,7 @@ def actualizar_coordinador(request,id_coordinador):
             coordinador.apellido = apellido_coordinador
             coordinador.numero_documento = numero_documento_coordinador
             coordinador.save()
+            return redirect("listar_coordinadores")
     except ObjectDoesNotExist:
         return HttpResponse("El id no coincide con ningun objeto") 
     
@@ -321,6 +320,7 @@ def registrar_cliente(request):
                 nombre = nombre_cliente,
                 apellido = apellido_cliente
             )
+            return redirect("listar_clientes")
         except:
             return HttpResponse("Ocurrió un error al crear el usuario")
     return render(
@@ -418,6 +418,7 @@ def actualizar_cliente (request, id_cliente):
             cliente.nombre = nombre_cliente
             cliente.apellido = apellido_cliente
             cliente.save()
+            return redirect("listar_clientes")
     except:
         return HttpResponse("No se ha podido actualizar el registro del cliente") 
     
@@ -451,6 +452,7 @@ def registrar_servicio(request):
                 precio = precio_servicio,
                 activo = True,
             )
+            return redirect("listar_servicios")
         except:
             return HttpResponse("Ocurrio un problema al registrar el nuevo servicio")
     return render(request, 'servicios/registrar.html')
@@ -551,6 +553,7 @@ def actualizar_servicio(request, id_servicio):
             servicio.descripcion = descripcion_servicio
             servicio.precio = precio_servicio
             servicio.save()
+            return redirect("listar_servicios")
     except:
         return HttpResponse("No se ha podido actualizar el registro del servicio") 
     
@@ -590,8 +593,7 @@ def registrar_reservas(request):
                 servicio=servicio_reserva,
                 precio=precio_reserva,
             )
-            
-            return HttpResponse("La reserva se ha registrado exitosamente")
+            return redirect("listar_reservas")
         
         except Exception as e:
             return HttpResponse("Ocurrió un problema al registrar la nueva reserva: " + str(e))
@@ -655,8 +657,7 @@ def actualizar_reserva_de_servicio(request, id_reserva):
             reserva.servicio = Servicio.objects.get(id = request.POST['servicios'])
             reserva.precio = request.POST['precio']
             reserva.save()   
-            
-            return HttpResponse("La reserva se ha actualizado exitosamente")
+            return redirect("listar_reservas")
         
         except Exception as e:
             return HttpResponse("Ocurrió un problema al actualizar la nueva reserva: " + str(e))
@@ -693,10 +694,10 @@ def eliminar_reserva(request, id_reserva):
     try:
         reserva = ReservaServicio.objects.get(id=id_reserva)
         reserva.delete()
+        return redirect("listar_reservas")
     except:
         return HttpResponse("No se ha encontrado la reserva a eliminar.")
 
-    return HttpResponse("Se ha eliminado la reserva correctamente.")
 
 
 
