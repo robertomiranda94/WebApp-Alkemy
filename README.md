@@ -1,5 +1,12 @@
 # Proyecto Integrador Alkemy
 
+## Instalación del proyecto
+Los pasos para poner en marcha el proyecto son los siguientes:
+- Paso 1: Entrar en la consola e ingresar este comando pip install -r requeriments.txt
+- Paso 2: Ejecutar el comando python manage.py migrate
+- Paso 3: Ejecutar el comando python manage.py runserver para correr el servidor
+- Paso 4: En cualquier navegador ingresar esta url: http://localhost:8000/ 
+
 ## Funcionalidades del módulo Clientes
 
 El módulo **Clientes** proporciona las siguientes funcionalidades:
@@ -164,27 +171,27 @@ El módulo **Reserva de Servicios** proporciona las siguientes funcionalidades:
 
 ## Funcionalidades de la API del sistema
 - #### Listar servicios en formato JSON:
-    - URL: `/api/servicios/listar`
+    - URL: `/api/servicios`
     - Método: GET
-    - Descripción: Esta función devuelve una lista de servicios en formato JSON. Proporciona información sobre los servicios disponibles, incluyendo el ID, nombre, descripción y precio de cada servicio.
+    - Descripción: Esta función devuelve una lista de servicios en formato JSON. Proporciona información sobre los servicios disponibles, incluyendo el ID, nombre y precio de cada servicio.
 ![](/static/img/api-listado-servicios.png)
 
 - #### Mostrar información de un servicio en formato JSON:
-    - URL: `/api/servicios/mostrar/id_servicio`
+    - URL: `/api/servicios/id_servicio`
     - Método: GET
     - Descripción: Esta función devuelve un objeto JSON que representa el servicio con el ID especificado. Proporciona información detallada sobre el servicio, incluyendo el ID, nombre, descripción y precio.
 ![](/static/img/api-filtro-id-servicios.png)
 
 - #### Listar coordinadores en formato JSON:
-    - URL: `/api/coordinadores/listar`
+    - URL: `/api/coordinadores`
     - Método: GET
-    - Descripción: Esta función devuelve una lista de coordinadores en formato JSON. Proporciona información sobre los coordinadores registrados, incluyendo el ID, nombre y correo electrónico de cada coordinador.
+    - Descripción: Esta función devuelve una lista de coordinadores en formato JSON. Proporciona información sobre los coordinadores registrados, incluyendo el ID, nombre, DNI, fecha de alta y la propiedad activo de cada coordinador.
 ![](/static/img/api-listado-coordinadores.png)
 
 - #### Listar empleados en formato JSON:
-    - URL: `/api/empleados/listar`
+    - URL: `/api/empleados`
     - Método: GET
-    - Descripción: Esta función devuelve una lista de empleados en formato JSON. Proporciona información sobre los empleados registrados, incluyendo el ID, nombre, apellido y correo electrónico de cada empleado.
+    - Descripción: Esta función devuelve una lista de empleados en formato JSON. Proporciona información sobre los empleados registrados, incluyendo el ID, nombre, apellido, numero de legajo y la propiedad activo de cada empleado.
 ![](/static/img/api-listado-empleados.png)
 
 ## Django Admin
@@ -225,3 +232,9 @@ Una vez que hayas accedido al panel de administración, verás una interfaz intu
 - Búsqueda y filtrado: El panel de administración de Django proporciona capacidades de búsqueda y filtrado para encontrar registros específicos. Utiliza la barra de búsqueda en la parte superior de la lista de registros o los filtros disponibles en el panel lateral para refinar los resultados.
 
 ![](/static/img/django_admin5.png)
+
+- #### Listar empleados en formato JSON:
+    - URL: `/api/clientes`
+    - Método: GET
+    - Descripción: Esta función devuelve una lista de clientes en formato JSON. Proporciona información sobre los clientes registrados, incluyendo el ID, nombre, apellido y si el cliente está activo.
+![](/static/img/api-listado-clientes.png)
