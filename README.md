@@ -185,3 +185,4 @@ El módulo **Reserva de Servicios** proporciona las siguientes funcionalidades:
     - URL: `/api/empleados/listar`
     - Método: GET
     - Descripción: Esta función devuelve una lista de empleados en formato JSON. Proporciona información sobre los empleados registrados, incluyendo el ID, nombre, apellido y correo electrónico de cada empleado.
+![](/static/img/api-listado-empleados.png)
