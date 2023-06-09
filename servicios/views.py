@@ -30,6 +30,9 @@ def index(request):
 def registrar_empleado(request):
     """
     View para procesar una solicitud POST para registrar un empleado en el sistema.
+
+    Parametro:
+        request: La solicitud HTTP recibida por la vista.
     
     Retorno:
     render: renderiza el template con los datos obtenidos
@@ -71,6 +74,9 @@ def listar_empleados(request):
     """
     View para obtiener la lista de todos los empleados.
 
+    Parametro:
+        request: La solicitud HTTP recibida por la vista.
+
     Retorno:
     render: renderiza el template con la lista obtenida
     """
@@ -89,8 +95,9 @@ def activar_empleado(request, id):
     """
     View para activar un registro de un empleado.
 
-    Parametro:
-    id (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de activar el registro
@@ -110,8 +117,9 @@ def desactivar_empleado(request, id):
     """
     View para desactivar un registro de un empleado.
 
-    Parametro:
-    id (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de desactivar el registro
@@ -130,8 +138,9 @@ def actualizar_empleado(request, id_empleado):
     """
     View para activar un registro de un empleado.
 
-    Parametro:
-    id_empleado (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_empleado (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
@@ -296,6 +305,9 @@ def actualizar_coordinador(request,id_coordinador):
 def registrar_cliente(request):
     """
     View para procesar una solicitud POST para registrar un cliente en el sistema.
+
+    Parametro:
+    request: La solicitud HTTP recibida por la vista.
     
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de guardar el registro
@@ -321,6 +333,9 @@ def listar_clientes(request):
     """
     View para obtiener la lista de todos los clientes.
 
+    Parametros:
+    request: La solicitud HTTP recibida por la vista.
+
     Retorno:
     render: renderiza el template con la lista obtenida
     """
@@ -339,8 +354,9 @@ def activar_cliente(request,id_cliente):
     """
     View para activar un registro de un cliente.
 
-    Parametro:
-    id_cliente (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_cliente (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de activar el registro
@@ -360,8 +376,9 @@ def desactivar_cliente(request, id_cliente):
     """
     View para desactivar un registro de un cliente.
 
-    Parametro:
-    id_cliente (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_cliente (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de desactivar el registro
@@ -381,8 +398,9 @@ def actualizar_cliente (request, id_cliente):
     """
     View para activar un registro de un cliente.
 
-    Parametro:
-    id_cliente (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_cliente (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
@@ -414,6 +432,9 @@ def actualizar_cliente (request, id_cliente):
 def registrar_servicio(request):
     """
     View para procesar una solicitud POST para registrar un servicio en el sistema.
+
+    Parametro:
+    request: La solicitud HTTP recibida por la vista.
     
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de guardar el registro
@@ -439,6 +460,9 @@ def listar_servicios(request):
     """
     View para obtiener la lista de todos los servicios.
 
+    Parametro:
+    request: La solicitud HTTP recibida por la vista.
+
     Retorno:
     render: renderiza el template con la lista obtenida
     """
@@ -457,8 +481,9 @@ def activar_servicio(request, id_servicio):
     """
     View para activar un registro de un servicio.
 
-    Parametro:
-    id_servicio (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_servicio (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de activar el registro
@@ -480,8 +505,9 @@ def desactivar_servicio(request,id_servicio):
     """
     View para desactivar un registro de un servicio.
 
-    Parametro:
-    id_servicio (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_servicio (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de desactivar el registro
@@ -503,8 +529,9 @@ def actualizar_servicio(request, id_servicio):
     """
     View para activar un registro de un servicio.
 
-    Parametro:
-    id_servicio (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_servicio (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
@@ -538,6 +565,9 @@ def actualizar_servicio(request, id_servicio):
 def registrar_reservas(request):
     """
     View para procesar una solicitud POST para registrar una reserva en el sistema.
+
+    Parametro:
+    request: La solicitud HTTP recibida por la vista.
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de guardar el registro
@@ -585,6 +615,10 @@ def listar_reservas(request):
     '''
     View para obtener la lista de todas las reservas.
 
+    Parametro:
+    request: La solicitud HTTP recibida por la vista.
+
+    Retorna
     render: renderiza el template con la lista obtenida
     '''
     reservas = ReservaServicio.objects.all()
@@ -602,8 +636,9 @@ def actualizar_reserva_de_servicio(request, id_reserva):
     '''
     View para actualizar una reserva de servicio.
 
-    Parametro:
-    id_reserva (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_reserva (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de actualizar el registro
@@ -647,8 +682,9 @@ def eliminar_reserva(request, id_reserva):
     '''
     View para eliminar una reserva de servicio.
 
-    Parametro:
-    id_reserva (int): id del registro
+    Parametros:
+    - request: La solicitud HTTP recibida por la vista.
+    - id_reserva (int): id del registro
 
     Retorno:
     HttpResponse: mensaje de que ocurrio un problema al tratar de eliminar el registro
