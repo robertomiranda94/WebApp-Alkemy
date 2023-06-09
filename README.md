@@ -66,7 +66,7 @@ El módulo **Empleados** proporciona las siguientes funcionalidades:
 
 ## Funcionalidades del módulo Coordinadores
 
-El módulo **coordinadores** proporciona las siguientes funcionalidades:
+El módulo **Coordinadores** proporciona las siguientes funcionalidades:
 
 - ##### Registro de un nuevo coordinador:
     - URL: `/coordinadores/nuevo`
@@ -159,3 +159,29 @@ El módulo **Reserva de Servicios** proporciona las siguientes funcionalidades:
     - Método: GET, POST
     - Descripción: Esta función permite actualizar los datos de una reserva de servicio específica en el sistema, identificada por su ID. Se puede acceder a la página de actualización a través de una solicitud GET y se espera que se envíen los datos actualizados en una solicitud POST. Los datos actualizados incluyen la fecha, el cliente, el responsable, el empleado, el servicio de la reserva y el precio.
 ![](/static/img/actualizar-reserva.png)
+
+***
+
+## Funcionalidades de la API del sistema
+- #### Listar servicios en formato JSON:
+    - URL: `/api/servicios/listar`
+    - Método: GET
+    - Descripción: Esta función devuelve una lista de servicios en formato JSON. Proporciona información sobre los servicios disponibles, incluyendo el ID, nombre, descripción y precio de cada servicio.
+![](/static/img/api-listado-servicios.png)
+
+- #### Mostrar información de un servicio en formato JSON:
+    - URL: `/api/servicios/mostrar/id_servicio`
+    - Método: GET
+    - Descripción: Esta función devuelve un objeto JSON que representa el servicio con el ID especificado. Proporciona información detallada sobre el servicio, incluyendo el ID, nombre, descripción y precio.
+![](/static/img/api-filtro-id-servicios.png)
+
+- #### Listar coordinadores en formato JSON:
+    - URL: `/api/coordinadores/listar`
+    - Método: GET
+    - Descripción: Esta función devuelve una lista de coordinadores en formato JSON. Proporciona información sobre los coordinadores registrados, incluyendo el ID, nombre y correo electrónico de cada coordinador.
+![](/static/img/api-listado-coordinadores.png)
+
+- #### Listar empleados en formato JSON:
+    - URL: `/api/empleados/listar`
+    - Método: GET
+    - Descripción: Esta función devuelve una lista de empleados en formato JSON. Proporciona información sobre los empleados registrados, incluyendo el ID, nombre, apellido y correo electrónico de cada empleado.
