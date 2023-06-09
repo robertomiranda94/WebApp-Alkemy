@@ -4,7 +4,9 @@ from .models import Coordinador,Empleado,Servicio, Cliente, ReservaServicio
 
 class CoordinadorAdmin(admin.ModelAdmin):
     model = Coordinador
-    # muestra la info en columnas en el admin
+    """
+    Clase de administración personalizada para el modelo Coordinador.
+    """
     list_display = [
         "id",
         "nombre",
@@ -24,6 +26,9 @@ class CoordinadorAdmin(admin.ModelAdmin):
     ]
 
 class EmpleadoAdmin(admin.ModelAdmin):
+    """
+    Clase de administración personalizada para el modelo Empleado.
+    """
     model = Empleado
     list_display = [
         "nombre",
@@ -44,8 +49,10 @@ class EmpleadoAdmin(admin.ModelAdmin):
     
 
 class ServicioAdmin(admin.ModelAdmin):
+    """
+    Clase de administración personalizada para el modelo Servicio.
+    """
     model = Servicio
-
     list_display = [
         "id",
         "nombre",
@@ -65,14 +72,19 @@ class ServicioAdmin(admin.ModelAdmin):
     ]
 
 class ClienteAdmin(admin.ModelAdmin):
+    """
+    Clase de administración personalizada para el modelo Cliente.
+    """
     model = Cliente
     list_display = ['nombre', 'apellido', 'activo']
     search_fields = ['nombre', 'apellido']
     list_filter = ['activo']
 
 class ReservaServicioAdmin(admin.ModelAdmin):
+    """
+    Clase de administración personalizada para el modelo ReservaServicio.
+    """
     model = ReservaServicio
-    
     list_display = [
         "id",
         "fecha_creacion",
@@ -92,7 +104,10 @@ class ReservaServicioAdmin(admin.ModelAdmin):
         "empleado__nombre",
         "servicio__nombre",
     ]
-    
+
+""""
+Se registra cada clase de modelo junto con su clase de administrador correspondiente en el panel de administración de Django mediante el uso de admin.site.register()
+"""
 
 admin.site.register(Coordinador,CoordinadorAdmin)
 admin.site.register(Empleado, EmpleadoAdmin)

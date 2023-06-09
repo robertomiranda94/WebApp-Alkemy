@@ -194,9 +194,47 @@ El módulo **Reserva de Servicios** proporciona las siguientes funcionalidades:
     - Descripción: Esta función devuelve una lista de empleados en formato JSON. Proporciona información sobre los empleados registrados, incluyendo el ID, nombre, apellido, numero de legajo y la propiedad activo de cada empleado.
 ![](/static/img/api-listado-empleados.png)
 
+## Django Admin
+
+El panel de administración de Django es una interfaz incorporada que te permite administrar y manipular los datos de tu aplicación de manera fácil y eficiente. Proporciona una interfaz de usuario amigable y lista para usar para realizar tareas comunes de administración, como agregar, editar y eliminar registros de la base de datos.
+
+#### Acceder a la página de administración:
+- Ejecuta tu servidor de desarrollo local de Django utilizando el comando  `python manage.py runserver`.
+- Abre tu navegador web y ve a la dirección [http://localhost:8000/admin/](http://localhost:8000/admin/) (reemplaza 'localhost' y '8000' con la configuración correspondiente si estás utilizando un host o puerto diferente).
+- Verás la página de inicio de sesión del panel de administración de Django. Ingresa tus credenciales de superusuario para acceder al panel de administración.
+
+![](/static/img/django_admin.png)
+
+
+
+#### Uso básico del panel de administración
+
+Una vez que hayas accedido al panel de administración, verás una interfaz intuitiva para administrar tus modelos registrados. Aquí tienes algunas acciones comunes que puedes realizar:
+- Ver lista de registros: En la página principal del panel de administración, verás una lista de los modelos registrados. Haz clic en uno de los modelos para ver la lista de registros existentes.
+
+![](/static/img/django_admin2.png)
+
+
+- Agregar un nuevo registro: En la página de lista de registros de un modelo, haz clic en el botón "Agregar" para crear un nuevo registro en la base de datos. Luego, completa los campos del formulario y guarda el registro.
+
+![](/static/img/django_admin6.png)
+
+- Editar un registro existente: En la lista de registros de un modelo, puedes hacer clic en un registro para ver su detalle. Desde allí, puedes realizar modificaciones y guardar los cambios.
+
+![](/static/img/django_admin3.png)
+
+
+- Eliminar un registro: En la lista de registros de un modelo, cada registro tiene una opción para eliminarlo. Ten cuidado, ya que esto eliminará permanentemente el registro de la base de datos.
+
+![](/static/img/django_admin4.png)
+
+
+- Búsqueda y filtrado: El panel de administración de Django proporciona capacidades de búsqueda y filtrado para encontrar registros específicos. Utiliza la barra de búsqueda en la parte superior de la lista de registros o los filtros disponibles en el panel lateral para refinar los resultados.
+
+![](/static/img/django_admin5.png)
+
 - #### Listar empleados en formato JSON:
     - URL: `/api/clientes`
     - Método: GET
     - Descripción: Esta función devuelve una lista de clientes en formato JSON. Proporciona información sobre los clientes registrados, incluyendo el ID, nombre, apellido y si el cliente está activo.
 ![](/static/img/api-listado-clientes.png)
-
